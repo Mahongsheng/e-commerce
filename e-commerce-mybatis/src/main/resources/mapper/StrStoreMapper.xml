@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecommerce.dao.StrStoreMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.StrStore">
+    <id column="str_id" jdbcType="INTEGER" property="strId" />
+    <result column="dsr_id" jdbcType="INTEGER" property="dsrId" />
+    <result column="platform_type" jdbcType="VARCHAR" property="platformType" />
+    <result column="store_name" jdbcType="VARCHAR" property="storeName" />
+    <result column="store_sts_cd" jdbcType="VARCHAR" property="storeStsCd" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="call_cnt" jdbcType="INTEGER" property="callCnt" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="sts_cd" jdbcType="CHAR" property="stsCd" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    str_id, dsr_id, platform_type, store_name, store_sts_cd, created_by, creation_date, 
+    last_update_by, last_update_date, call_cnt, remark, sts_cd
+  </sql>
+  <select id="selectByExample" parameterType="com.ecommerce.pojo.StrStoreExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from str_store
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from str_store
+    where str_id = #{strId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from str_store
+    where str_id = #{strId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.StrStoreExample">
+    delete from str_store
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ecommerce.pojo.StrStore">
+    insert into str_store (str_id, dsr_id, platform_type, 
+      store_name, store_sts_cd, created_by, 
+      creation_date, last_update_by, last_update_date, 
+      call_cnt, remark, sts_cd
+      )
+    values (#{strId,jdbcType=INTEGER}, #{dsrId,jdbcType=INTEGER}, #{platformType,jdbcType=VARCHAR}, 
+      #{storeName,jdbcType=VARCHAR}, #{storeStsCd,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, 
+      #{creationDate,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=VARCHAR}, #{lastUpdateDate,jdbcType=TIMESTAMP}, 
+      #{callCnt,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{stsCd,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ecommerce.pojo.StrStore">
+    insert into str_store
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="strId != null">
+        str_id,
+      </if>
+      <if test="dsrId != null">
+        dsr_id,
+      </if>
+      <if test="platformType != null">
+        platform_type,
+      </if>
+      <if test="storeName != null">
+        store_name,
+      </if>
+      <if test="storeStsCd != null">
+        store_sts_cd,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="callCnt != null">
+        call_cnt,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="stsCd != null">
+        sts_cd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="strId != null">
+        #{strId,jdbcType=INTEGER},
+      </if>
+      <if test="dsrId != null">
+        #{dsrId,jdbcType=INTEGER},
+      </if>
+      <if test="platformType != null">
+        #{platformType,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null">
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeStsCd != null">
+        #{storeStsCd,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callCnt != null">
+        #{callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="stsCd != null">
+        #{stsCd,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ecommerce.pojo.StrStoreExample" resultType="java.lang.Long">
+    select count(*) from str_store
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update str_store
+    <set>
+      <if test="record.strId != null">
+        str_id = #{record.strId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dsrId != null">
+        dsr_id = #{record.dsrId,jdbcType=INTEGER},
+      </if>
+      <if test="record.platformType != null">
+        platform_type = #{record.platformType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storeName != null">
+        store_name = #{record.storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storeStsCd != null">
+        store_sts_cd = #{record.storeStsCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdBy != null">
+        created_by = #{record.createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creationDate != null">
+        creation_date = #{record.creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateBy != null">
+        last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdateDate != null">
+        last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.callCnt != null">
+        call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stsCd != null">
+        sts_cd = #{record.stsCd,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update str_store
+    set str_id = #{record.strId,jdbcType=INTEGER},
+      dsr_id = #{record.dsrId,jdbcType=INTEGER},
+      platform_type = #{record.platformType,jdbcType=VARCHAR},
+      store_name = #{record.storeName,jdbcType=VARCHAR},
+      store_sts_cd = #{record.storeStsCd,jdbcType=VARCHAR},
+      created_by = #{record.createdBy,jdbcType=VARCHAR},
+      creation_date = #{record.creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      sts_cd = #{record.stsCd,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.StrStore">
+    update str_store
+    <set>
+      <if test="dsrId != null">
+        dsr_id = #{dsrId,jdbcType=INTEGER},
+      </if>
+      <if test="platformType != null">
+        platform_type = #{platformType,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null">
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeStsCd != null">
+        store_sts_cd = #{storeStsCd,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callCnt != null">
+        call_cnt = #{callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="stsCd != null">
+        sts_cd = #{stsCd,jdbcType=CHAR},
+      </if>
+    </set>
+    where str_id = #{strId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.StrStore">
+    update str_store
+    set dsr_id = #{dsrId,jdbcType=INTEGER},
+      platform_type = #{platformType,jdbcType=VARCHAR},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      store_sts_cd = #{storeStsCd,jdbcType=VARCHAR},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{callCnt,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      sts_cd = #{stsCd,jdbcType=CHAR}
+    where str_id = #{strId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecommerce.dao.ProProductMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.ProProduct">
+    <id column="pro_id" jdbcType="INTEGER" property="proId" />
+    <result column="sku_cd" jdbcType="VARCHAR" property="skuCd" />
+    <result column="brd_id" jdbcType="INTEGER" property="brdId" />
+    <result column="man_id" jdbcType="INTEGER" property="manId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="upc" jdbcType="VARCHAR" property="upc" />
+    <result column="ean" jdbcType="VARCHAR" property="ean" />
+    <result column="model" jdbcType="VARCHAR" property="model" />
+    <result column="warranty_day" jdbcType="VARCHAR" property="warrantyDay" />
+    <result column="retail_price" jdbcType="DECIMAL" property="retailPrice" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="call_int" jdbcType="INTEGER" property="callInt" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="sts_cd" jdbcType="CHAR" property="stsCd" />
+    <result column="mininum_retail_price" jdbcType="DECIMAL" property="mininumRetailPrice" />
+    <result column="replenishment_period" jdbcType="INTEGER" property="replenishmentPeriod" />
+    <result column="key_words" jdbcType="VARCHAR" property="keyWords" />
+    <result column="time_unit" jdbcType="VARCHAR" property="timeUnit" />
+    <result column="stockseting" jdbcType="INTEGER" property="stockseting" />
+    <result column="prc_id" jdbcType="INTEGER" property="prcId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ecommerce.pojo.ProProduct">
+    <result column="warranty" jdbcType="LONGVARCHAR" property="warranty" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    pro_id, sku_cd, brd_id, man_id, title, upc, ean, model, warranty_day, retail_price, 
+    created_by, creation_date, last_update_by, last_update_date, call_int, remark, sts_cd, 
+    mininum_retail_price, replenishment_period, key_words, time_unit, stockseting, prc_id
+  </sql>
+  <sql id="Blob_Column_List">
+    warranty
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.ecommerce.pojo.ProProductExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from pro_product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.ecommerce.pojo.ProProductExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pro_product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from pro_product
+    where pro_id = #{proId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pro_product
+    where pro_id = #{proId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.ProProductExample">
+    delete from pro_product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ecommerce.pojo.ProProduct">
+    <selectKey keyProperty="proId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into pro_product (sku_cd, brd_id, man_id, 
+      title, upc, ean, model, 
+      warranty_day, retail_price, created_by, 
+      creation_date, last_update_by, last_update_date, 
+      call_int, remark, sts_cd, 
+      mininum_retail_price, replenishment_period, 
+      key_words, time_unit, stockseting, 
+      prc_id, warranty)
+    values (#{skuCd,jdbcType=VARCHAR}, #{brdId,jdbcType=INTEGER}, #{manId,jdbcType=INTEGER}, 
+      #{title,jdbcType=VARCHAR}, #{upc,jdbcType=VARCHAR}, #{ean,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, 
+      #{warrantyDay,jdbcType=VARCHAR}, #{retailPrice,jdbcType=DECIMAL}, #{createdBy,jdbcType=VARCHAR}, 
+      #{creationDate,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=VARCHAR}, #{lastUpdateDate,jdbcType=TIMESTAMP}, 
+      #{callInt,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{stsCd,jdbcType=CHAR}, 
+      #{mininumRetailPrice,jdbcType=DECIMAL}, #{replenishmentPeriod,jdbcType=INTEGER}, 
+      #{keyWords,jdbcType=VARCHAR}, #{timeUnit,jdbcType=VARCHAR}, #{stockseting,jdbcType=INTEGER}, 
+      #{prcId,jdbcType=INTEGER}, #{warranty,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ecommerce.pojo.ProProduct">
+    <selectKey keyProperty="proId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into pro_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="skuCd != null">
+        sku_cd,
+      </if>
+      <if test="brdId != null">
+        brd_id,
+      </if>
+      <if test="manId != null">
+        man_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="upc != null">
+        upc,
+      </if>
+      <if test="ean != null">
+        ean,
+      </if>
+      <if test="model != null">
+        model,
+      </if>
+      <if test="warrantyDay != null">
+        warranty_day,
+      </if>
+      <if test="retailPrice != null">
+        retail_price,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="callInt != null">
+        call_int,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="stsCd != null">
+        sts_cd,
+      </if>
+      <if test="mininumRetailPrice != null">
+        mininum_retail_price,
+      </if>
+      <if test="replenishmentPeriod != null">
+        replenishment_period,
+      </if>
+      <if test="keyWords != null">
+        key_words,
+      </if>
+      <if test="timeUnit != null">
+        time_unit,
+      </if>
+      <if test="stockseting != null">
+        stockseting,
+      </if>
+      <if test="prcId != null">
+        prc_id,
+      </if>
+      <if test="warranty != null">
+        warranty,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="skuCd != null">
+        #{skuCd,jdbcType=VARCHAR},
+      </if>
+      <if test="brdId != null">
+        #{brdId,jdbcType=INTEGER},
+      </if>
+      <if test="manId != null">
+        #{manId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="upc != null">
+        #{upc,jdbcType=VARCHAR},
+      </if>
+      <if test="ean != null">
+        #{ean,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null">
+        #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="warrantyDay != null">
+        #{warrantyDay,jdbcType=VARCHAR},
+      </if>
+      <if test="retailPrice != null">
+        #{retailPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callInt != null">
+        #{callInt,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="stsCd != null">
+        #{stsCd,jdbcType=CHAR},
+      </if>
+      <if test="mininumRetailPrice != null">
+        #{mininumRetailPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="replenishmentPeriod != null">
+        #{replenishmentPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="keyWords != null">
+        #{keyWords,jdbcType=VARCHAR},
+      </if>
+      <if test="timeUnit != null">
+        #{timeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="stockseting != null">
+        #{stockseting,jdbcType=INTEGER},
+      </if>
+      <if test="prcId != null">
+        #{prcId,jdbcType=INTEGER},
+      </if>
+      <if test="warranty != null">
+        #{warranty,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ecommerce.pojo.ProProductExample" resultType="java.lang.Long">
+    select count(*) from pro_product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update pro_product
+    <set>
+      <if test="record.proId != null">
+        pro_id = #{record.proId,jdbcType=INTEGER},
+      </if>
+      <if test="record.skuCd != null">
+        sku_cd = #{record.skuCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brdId != null">
+        brd_id = #{record.brdId,jdbcType=INTEGER},
+      </if>
+      <if test="record.manId != null">
+        man_id = #{record.manId,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.upc != null">
+        upc = #{record.upc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ean != null">
+        ean = #{record.ean,jdbcType=VARCHAR},
+      </if>
+      <if test="record.model != null">
+        model = #{record.model,jdbcType=VARCHAR},
+      </if>
+      <if test="record.warrantyDay != null">
+        warranty_day = #{record.warrantyDay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.retailPrice != null">
+        retail_price = #{record.retailPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createdBy != null">
+        created_by = #{record.createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creationDate != null">
+        creation_date = #{record.creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateBy != null">
+        last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdateDate != null">
+        last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.callInt != null">
+        call_int = #{record.callInt,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stsCd != null">
+        sts_cd = #{record.stsCd,jdbcType=CHAR},
+      </if>
+      <if test="record.mininumRetailPrice != null">
+        mininum_retail_price = #{record.mininumRetailPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.replenishmentPeriod != null">
+        replenishment_period = #{record.replenishmentPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="record.keyWords != null">
+        key_words = #{record.keyWords,jdbcType=VARCHAR},
+      </if>
+      <if test="record.timeUnit != null">
+        time_unit = #{record.timeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stockseting != null">
+        stockseting = #{record.stockseting,jdbcType=INTEGER},
+      </if>
+      <if test="record.prcId != null">
+        prc_id = #{record.prcId,jdbcType=INTEGER},
+      </if>
+      <if test="record.warranty != null">
+        warranty = #{record.warranty,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update pro_product
+    set pro_id = #{record.proId,jdbcType=INTEGER},
+      sku_cd = #{record.skuCd,jdbcType=VARCHAR},
+      brd_id = #{record.brdId,jdbcType=INTEGER},
+      man_id = #{record.manId,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      upc = #{record.upc,jdbcType=VARCHAR},
+      ean = #{record.ean,jdbcType=VARCHAR},
+      model = #{record.model,jdbcType=VARCHAR},
+      warranty_day = #{record.warrantyDay,jdbcType=VARCHAR},
+      retail_price = #{record.retailPrice,jdbcType=DECIMAL},
+      created_by = #{record.createdBy,jdbcType=VARCHAR},
+      creation_date = #{record.creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      call_int = #{record.callInt,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      sts_cd = #{record.stsCd,jdbcType=CHAR},
+      mininum_retail_price = #{record.mininumRetailPrice,jdbcType=DECIMAL},
+      replenishment_period = #{record.replenishmentPeriod,jdbcType=INTEGER},
+      key_words = #{record.keyWords,jdbcType=VARCHAR},
+      time_unit = #{record.timeUnit,jdbcType=VARCHAR},
+      stockseting = #{record.stockseting,jdbcType=INTEGER},
+      prc_id = #{record.prcId,jdbcType=INTEGER},
+      warranty = #{record.warranty,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update pro_product
+    set pro_id = #{record.proId,jdbcType=INTEGER},
+      sku_cd = #{record.skuCd,jdbcType=VARCHAR},
+      brd_id = #{record.brdId,jdbcType=INTEGER},
+      man_id = #{record.manId,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      upc = #{record.upc,jdbcType=VARCHAR},
+      ean = #{record.ean,jdbcType=VARCHAR},
+      model = #{record.model,jdbcType=VARCHAR},
+      warranty_day = #{record.warrantyDay,jdbcType=VARCHAR},
+      retail_price = #{record.retailPrice,jdbcType=DECIMAL},
+      created_by = #{record.createdBy,jdbcType=VARCHAR},
+      creation_date = #{record.creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      call_int = #{record.callInt,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      sts_cd = #{record.stsCd,jdbcType=CHAR},
+      mininum_retail_price = #{record.mininumRetailPrice,jdbcType=DECIMAL},
+      replenishment_period = #{record.replenishmentPeriod,jdbcType=INTEGER},
+      key_words = #{record.keyWords,jdbcType=VARCHAR},
+      time_unit = #{record.timeUnit,jdbcType=VARCHAR},
+      stockseting = #{record.stockseting,jdbcType=INTEGER},
+      prc_id = #{record.prcId,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.ProProduct">
+    update pro_product
+    <set>
+      <if test="skuCd != null">
+        sku_cd = #{skuCd,jdbcType=VARCHAR},
+      </if>
+      <if test="brdId != null">
+        brd_id = #{brdId,jdbcType=INTEGER},
+      </if>
+      <if test="manId != null">
+        man_id = #{manId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="upc != null">
+        upc = #{upc,jdbcType=VARCHAR},
+      </if>
+      <if test="ean != null">
+        ean = #{ean,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null">
+        model = #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="warrantyDay != null">
+        warranty_day = #{warrantyDay,jdbcType=VARCHAR},
+      </if>
+      <if test="retailPrice != null">
+        retail_price = #{retailPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callInt != null">
+        call_int = #{callInt,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="stsCd != null">
+        sts_cd = #{stsCd,jdbcType=CHAR},
+      </if>
+      <if test="mininumRetailPrice != null">
+        mininum_retail_price = #{mininumRetailPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="replenishmentPeriod != null">
+        replenishment_period = #{replenishmentPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="keyWords != null">
+        key_words = #{keyWords,jdbcType=VARCHAR},
+      </if>
+      <if test="timeUnit != null">
+        time_unit = #{timeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="stockseting != null">
+        stockseting = #{stockseting,jdbcType=INTEGER},
+      </if>
+      <if test="prcId != null">
+        prc_id = #{prcId,jdbcType=INTEGER},
+      </if>
+      <if test="warranty != null">
+        warranty = #{warranty,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where pro_id = #{proId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ecommerce.pojo.ProProduct">
+    update pro_product
+    set sku_cd = #{skuCd,jdbcType=VARCHAR},
+      brd_id = #{brdId,jdbcType=INTEGER},
+      man_id = #{manId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      upc = #{upc,jdbcType=VARCHAR},
+      ean = #{ean,jdbcType=VARCHAR},
+      model = #{model,jdbcType=VARCHAR},
+      warranty_day = #{warrantyDay,jdbcType=VARCHAR},
+      retail_price = #{retailPrice,jdbcType=DECIMAL},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      call_int = #{callInt,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      sts_cd = #{stsCd,jdbcType=CHAR},
+      mininum_retail_price = #{mininumRetailPrice,jdbcType=DECIMAL},
+      replenishment_period = #{replenishmentPeriod,jdbcType=INTEGER},
+      key_words = #{keyWords,jdbcType=VARCHAR},
+      time_unit = #{timeUnit,jdbcType=VARCHAR},
+      stockseting = #{stockseting,jdbcType=INTEGER},
+      prc_id = #{prcId,jdbcType=INTEGER},
+      warranty = #{warranty,jdbcType=LONGVARCHAR}
+    where pro_id = #{proId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.ProProduct">
+    update pro_product
+    set sku_cd = #{skuCd,jdbcType=VARCHAR},
+      brd_id = #{brdId,jdbcType=INTEGER},
+      man_id = #{manId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      upc = #{upc,jdbcType=VARCHAR},
+      ean = #{ean,jdbcType=VARCHAR},
+      model = #{model,jdbcType=VARCHAR},
+      warranty_day = #{warrantyDay,jdbcType=VARCHAR},
+      retail_price = #{retailPrice,jdbcType=DECIMAL},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      call_int = #{callInt,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      sts_cd = #{stsCd,jdbcType=CHAR},
+      mininum_retail_price = #{mininumRetailPrice,jdbcType=DECIMAL},
+      replenishment_period = #{replenishmentPeriod,jdbcType=INTEGER},
+      key_words = #{keyWords,jdbcType=VARCHAR},
+      time_unit = #{timeUnit,jdbcType=VARCHAR},
+      stockseting = #{stockseting,jdbcType=INTEGER},
+      prc_id = #{prcId,jdbcType=INTEGER}
+    where pro_id = #{proId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectProByPrcCat" resultType="com.ecommerce.dto.product.browse.ProductBrowseDTO">
+    SELECT pro.pro_id proId, pro.title,pro.retail_price retailPrice,pro.mininum_retail_price minRetailPrice, img_image.uri image
+    FROM pro_product AS pro, prc_product_category, img_image
+    WHERE pro.pro_id = prc_product_category.pro_id and pro.pro_id = img_image.entity_id and prc_product_category.category_id = #{catId,jdbcType=INTEGER} and pro.sts_cd = "d"
+    GROUP BY pro.pro_id;
+  </select>
+
+  <select id="selectProDetailById" resultType="com.ecommerce.dto.product.browse.ProductDetailDTO">
+    SELECT pro.pro_id proId, pro.title, pro.mininum_retail_price minRetailPrice, pro.retail_price retailPrice, prc.category_path categoryPath
+    FROM pro_product pro, prc_product_category prc
+    WHERE pro.pro_id = prc.pro_id AND pro.pro_id = #{proId,jdbcType=INTEGER} GROUP BY pro.pro_id;
+  </select>
+
+</mapper>

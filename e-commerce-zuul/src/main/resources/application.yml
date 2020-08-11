@@ -1,0 +1,53 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: e-commerce-zuul
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://39.105.102.179:8888//eureka
+
+management: #actuator配置
+  endpoints:
+    web:
+      exposure:
+        include: 'routes'
+
+zuul:
+  routes: #给服务配置路由
+    e-commerce-admin:
+      path: /admin/**
+    e-commerce-basicinfo:
+      path: /info/**
+    e-commerce-order:
+      path: /order/**
+    e-commerce-product:
+      path: /product/**
+    e-commerce-wallet:
+      path: /wallet/**
+
+  sensitive-headers: "*" #Cookie,Set-Cookie,Authorization #配置过滤敏感的请求头信息，设置为空就不会过滤
+#  add-host-header: true #设置为true重定向是会添加host请求头
+
+  host:
+    connect-timeout-millis: 60000 #配置路由超时
+    socket-timeout-millis: 60000
+
+#  prefix: /proxy #给网关路由添加前缀
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000

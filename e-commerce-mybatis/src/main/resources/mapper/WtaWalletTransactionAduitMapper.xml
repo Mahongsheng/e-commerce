@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecommerce.dao.WtaWalletTransactionAduitMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.WtaWalletTransactionAduit">
+    <id column="transaction_audit_id" jdbcType="INTEGER" property="transactionAuditId" />
+    <result column="buyer_id" jdbcType="INTEGER" property="buyerId" />
+    <result column="transaction_id" jdbcType="INTEGER" property="transactionId" />
+    <result column="available_money_before" jdbcType="DECIMAL" property="availableMoneyBefore" />
+    <result column="depositing_money_before" jdbcType="DECIMAL" property="depositingMoneyBefore" />
+    <result column="withdrawing_money_before" jdbcType="DECIMAL" property="withdrawingMoneyBefore" />
+    <result column="operate_money" jdbcType="DECIMAL" property="operateMoney" />
+    <result column="operate_type" jdbcType="TINYINT" property="operateType" />
+    <result column="available_money_after" jdbcType="DECIMAL" property="availableMoneyAfter" />
+    <result column="depositing_money_after" jdbcType="DECIMAL" property="depositingMoneyAfter" />
+    <result column="withdrawing_money_after" jdbcType="DECIMAL" property="withdrawingMoneyAfter" />
+    <result column="operate_by" jdbcType="VARCHAR" property="operateBy" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
+    <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    transaction_audit_id, buyer_id, transaction_id, available_money_before, depositing_money_before, 
+    withdrawing_money_before, operate_money, operate_type, available_money_after, depositing_money_after, 
+    withdrawing_money_after, operate_by, status, create_by, create_time, last_update_by, 
+    last_update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.ecommerce.pojo.WtaWalletTransactionAduitExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from wta_wallet_transaction_aduit
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wta_wallet_transaction_aduit
+    where transaction_audit_id = #{transactionAuditId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from wta_wallet_transaction_aduit
+    where transaction_audit_id = #{transactionAuditId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.WtaWalletTransactionAduitExample">
+    delete from wta_wallet_transaction_aduit
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ecommerce.pojo.WtaWalletTransactionAduit">
+    insert into wta_wallet_transaction_aduit (transaction_audit_id, buyer_id, transaction_id, 
+      available_money_before, depositing_money_before, 
+      withdrawing_money_before, operate_money, operate_type, 
+      available_money_after, depositing_money_after, 
+      withdrawing_money_after, operate_by, status, 
+      create_by, create_time, last_update_by, 
+      last_update_time)
+    values (#{transactionAuditId,jdbcType=INTEGER}, #{buyerId,jdbcType=INTEGER}, #{transactionId,jdbcType=INTEGER}, 
+      #{availableMoneyBefore,jdbcType=DECIMAL}, #{depositingMoneyBefore,jdbcType=DECIMAL}, 
+      #{withdrawingMoneyBefore,jdbcType=DECIMAL}, #{operateMoney,jdbcType=DECIMAL}, #{operateType,jdbcType=TINYINT}, 
+      #{availableMoneyAfter,jdbcType=DECIMAL}, #{depositingMoneyAfter,jdbcType=DECIMAL}, 
+      #{withdrawingMoneyAfter,jdbcType=DECIMAL}, #{operateBy,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=VARCHAR}, 
+      #{lastUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ecommerce.pojo.WtaWalletTransactionAduit">
+    insert into wta_wallet_transaction_aduit
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="transactionAuditId != null">
+        transaction_audit_id,
+      </if>
+      <if test="buyerId != null">
+        buyer_id,
+      </if>
+      <if test="transactionId != null">
+        transaction_id,
+      </if>
+      <if test="availableMoneyBefore != null">
+        available_money_before,
+      </if>
+      <if test="depositingMoneyBefore != null">
+        depositing_money_before,
+      </if>
+      <if test="withdrawingMoneyBefore != null">
+        withdrawing_money_before,
+      </if>
+      <if test="operateMoney != null">
+        operate_money,
+      </if>
+      <if test="operateType != null">
+        operate_type,
+      </if>
+      <if test="availableMoneyAfter != null">
+        available_money_after,
+      </if>
+      <if test="depositingMoneyAfter != null">
+        depositing_money_after,
+      </if>
+      <if test="withdrawingMoneyAfter != null">
+        withdrawing_money_after,
+      </if>
+      <if test="operateBy != null">
+        operate_by,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by,
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="transactionAuditId != null">
+        #{transactionAuditId,jdbcType=INTEGER},
+      </if>
+      <if test="buyerId != null">
+        #{buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="transactionId != null">
+        #{transactionId,jdbcType=INTEGER},
+      </if>
+      <if test="availableMoneyBefore != null">
+        #{availableMoneyBefore,jdbcType=DECIMAL},
+      </if>
+      <if test="depositingMoneyBefore != null">
+        #{depositingMoneyBefore,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawingMoneyBefore != null">
+        #{withdrawingMoneyBefore,jdbcType=DECIMAL},
+      </if>
+      <if test="operateMoney != null">
+        #{operateMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="operateType != null">
+        #{operateType,jdbcType=TINYINT},
+      </if>
+      <if test="availableMoneyAfter != null">
+        #{availableMoneyAfter,jdbcType=DECIMAL},
+      </if>
+      <if test="depositingMoneyAfter != null">
+        #{depositingMoneyAfter,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawingMoneyAfter != null">
+        #{withdrawingMoneyAfter,jdbcType=DECIMAL},
+      </if>
+      <if test="operateBy != null">
+        #{operateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null">
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ecommerce.pojo.WtaWalletTransactionAduitExample" resultType="java.lang.Long">
+    select count(*) from wta_wallet_transaction_aduit
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update wta_wallet_transaction_aduit
+    <set>
+      <if test="record.transactionAuditId != null">
+        transaction_audit_id = #{record.transactionAuditId,jdbcType=INTEGER},
+      </if>
+      <if test="record.buyerId != null">
+        buyer_id = #{record.buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.transactionId != null">
+        transaction_id = #{record.transactionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.availableMoneyBefore != null">
+        available_money_before = #{record.availableMoneyBefore,jdbcType=DECIMAL},
+      </if>
+      <if test="record.depositingMoneyBefore != null">
+        depositing_money_before = #{record.depositingMoneyBefore,jdbcType=DECIMAL},
+      </if>
+      <if test="record.withdrawingMoneyBefore != null">
+        withdrawing_money_before = #{record.withdrawingMoneyBefore,jdbcType=DECIMAL},
+      </if>
+      <if test="record.operateMoney != null">
+        operate_money = #{record.operateMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.operateType != null">
+        operate_type = #{record.operateType,jdbcType=TINYINT},
+      </if>
+      <if test="record.availableMoneyAfter != null">
+        available_money_after = #{record.availableMoneyAfter,jdbcType=DECIMAL},
+      </if>
+      <if test="record.depositingMoneyAfter != null">
+        depositing_money_after = #{record.depositingMoneyAfter,jdbcType=DECIMAL},
+      </if>
+      <if test="record.withdrawingMoneyAfter != null">
+        withdrawing_money_after = #{record.withdrawingMoneyAfter,jdbcType=DECIMAL},
+      </if>
+      <if test="record.operateBy != null">
+        operate_by = #{record.operateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateBy != null">
+        last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdateTime != null">
+        last_update_time = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update wta_wallet_transaction_aduit
+    set transaction_audit_id = #{record.transactionAuditId,jdbcType=INTEGER},
+      buyer_id = #{record.buyerId,jdbcType=INTEGER},
+      transaction_id = #{record.transactionId,jdbcType=INTEGER},
+      available_money_before = #{record.availableMoneyBefore,jdbcType=DECIMAL},
+      depositing_money_before = #{record.depositingMoneyBefore,jdbcType=DECIMAL},
+      withdrawing_money_before = #{record.withdrawingMoneyBefore,jdbcType=DECIMAL},
+      operate_money = #{record.operateMoney,jdbcType=DECIMAL},
+      operate_type = #{record.operateType,jdbcType=TINYINT},
+      available_money_after = #{record.availableMoneyAfter,jdbcType=DECIMAL},
+      depositing_money_after = #{record.depositingMoneyAfter,jdbcType=DECIMAL},
+      withdrawing_money_after = #{record.withdrawingMoneyAfter,jdbcType=DECIMAL},
+      operate_by = #{record.operateBy,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      last_update_time = #{record.lastUpdateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.WtaWalletTransactionAduit">
+    update wta_wallet_transaction_aduit
+    <set>
+      <if test="buyerId != null">
+        buyer_id = #{buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="transactionId != null">
+        transaction_id = #{transactionId,jdbcType=INTEGER},
+      </if>
+      <if test="availableMoneyBefore != null">
+        available_money_before = #{availableMoneyBefore,jdbcType=DECIMAL},
+      </if>
+      <if test="depositingMoneyBefore != null">
+        depositing_money_before = #{depositingMoneyBefore,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawingMoneyBefore != null">
+        withdrawing_money_before = #{withdrawingMoneyBefore,jdbcType=DECIMAL},
+      </if>
+      <if test="operateMoney != null">
+        operate_money = #{operateMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="operateType != null">
+        operate_type = #{operateType,jdbcType=TINYINT},
+      </if>
+      <if test="availableMoneyAfter != null">
+        available_money_after = #{availableMoneyAfter,jdbcType=DECIMAL},
+      </if>
+      <if test="depositingMoneyAfter != null">
+        depositing_money_after = #{depositingMoneyAfter,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawingMoneyAfter != null">
+        withdrawing_money_after = #{withdrawingMoneyAfter,jdbcType=DECIMAL},
+      </if>
+      <if test="operateBy != null">
+        operate_by = #{operateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where transaction_audit_id = #{transactionAuditId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.WtaWalletTransactionAduit">
+    update wta_wallet_transaction_aduit
+    set buyer_id = #{buyerId,jdbcType=INTEGER},
+      transaction_id = #{transactionId,jdbcType=INTEGER},
+      available_money_before = #{availableMoneyBefore,jdbcType=DECIMAL},
+      depositing_money_before = #{depositingMoneyBefore,jdbcType=DECIMAL},
+      withdrawing_money_before = #{withdrawingMoneyBefore,jdbcType=DECIMAL},
+      operate_money = #{operateMoney,jdbcType=DECIMAL},
+      operate_type = #{operateType,jdbcType=TINYINT},
+      available_money_after = #{availableMoneyAfter,jdbcType=DECIMAL},
+      depositing_money_after = #{depositingMoneyAfter,jdbcType=DECIMAL},
+      withdrawing_money_after = #{withdrawingMoneyAfter,jdbcType=DECIMAL},
+      operate_by = #{operateBy,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
+    where transaction_audit_id = #{transactionAuditId,jdbcType=INTEGER}
+  </update>
+</mapper>

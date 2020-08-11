@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecommerce.dao.ParParameterMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.ParParameter">
+    <id column="par_id" jdbcType="INTEGER" property="parId" />
+    <result column="param_cd" jdbcType="VARCHAR" property="paramCd" />
+    <result column="param_value" jdbcType="VARCHAR" property="paramValue" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column=" creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="call_cnt" jdbcType="INTEGER" property="callCnt" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="sts_cd" jdbcType="CHAR" property="stsCd" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ecommerce.pojo.ParParameter">
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    par_id, param_cd, param_value, created_by, ` creation_date`, last_update_by, last_update_date, 
+    call_cnt, remark, sts_cd
+  </sql>
+  <sql id="Blob_Column_List">
+    description
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.ecommerce.pojo.ParParameterExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from par_parameter
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.ecommerce.pojo.ParParameterExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from par_parameter
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from par_parameter
+    where par_id = #{parId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from par_parameter
+    where par_id = #{parId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.ParParameterExample">
+    delete from par_parameter
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ecommerce.pojo.ParParameter">
+    insert into par_parameter (par_id, param_cd, param_value, 
+      created_by, ` creation_date`, last_update_by, 
+      last_update_date, call_cnt, remark, 
+      sts_cd, description)
+    values (#{parId,jdbcType=INTEGER}, #{paramCd,jdbcType=VARCHAR}, #{paramValue,jdbcType=VARCHAR}, 
+      #{createdBy,jdbcType=VARCHAR}, #{creationDate,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=VARCHAR}, 
+      #{lastUpdateDate,jdbcType=TIMESTAMP}, #{callCnt,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{stsCd,jdbcType=CHAR}, #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ecommerce.pojo.ParParameter">
+    insert into par_parameter
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="parId != null">
+        par_id,
+      </if>
+      <if test="paramCd != null">
+        param_cd,
+      </if>
+      <if test="paramValue != null">
+        param_value,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="creationDate != null">
+        ` creation_date`,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="callCnt != null">
+        call_cnt,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="stsCd != null">
+        sts_cd,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="parId != null">
+        #{parId,jdbcType=INTEGER},
+      </if>
+      <if test="paramCd != null">
+        #{paramCd,jdbcType=VARCHAR},
+      </if>
+      <if test="paramValue != null">
+        #{paramValue,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callCnt != null">
+        #{callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="stsCd != null">
+        #{stsCd,jdbcType=CHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ecommerce.pojo.ParParameterExample" resultType="java.lang.Long">
+    select count(*) from par_parameter
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update par_parameter
+    <set>
+      <if test="record.parId != null">
+        par_id = #{record.parId,jdbcType=INTEGER},
+      </if>
+      <if test="record.paramCd != null">
+        param_cd = #{record.paramCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paramValue != null">
+        param_value = #{record.paramValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdBy != null">
+        created_by = #{record.createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creationDate != null">
+        ` creation_date` = #{record.creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateBy != null">
+        last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdateDate != null">
+        last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.callCnt != null">
+        call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stsCd != null">
+        sts_cd = #{record.stsCd,jdbcType=CHAR},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update par_parameter
+    set par_id = #{record.parId,jdbcType=INTEGER},
+      param_cd = #{record.paramCd,jdbcType=VARCHAR},
+      param_value = #{record.paramValue,jdbcType=VARCHAR},
+      created_by = #{record.createdBy,jdbcType=VARCHAR},
+      ` creation_date` = #{record.creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      sts_cd = #{record.stsCd,jdbcType=CHAR},
+      description = #{record.description,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update par_parameter
+    set par_id = #{record.parId,jdbcType=INTEGER},
+      param_cd = #{record.paramCd,jdbcType=VARCHAR},
+      param_value = #{record.paramValue,jdbcType=VARCHAR},
+      created_by = #{record.createdBy,jdbcType=VARCHAR},
+      ` creation_date` = #{record.creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      sts_cd = #{record.stsCd,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.ParParameter">
+    update par_parameter
+    <set>
+      <if test="paramCd != null">
+        param_cd = #{paramCd,jdbcType=VARCHAR},
+      </if>
+      <if test="paramValue != null">
+        param_value = #{paramValue,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        ` creation_date` = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callCnt != null">
+        call_cnt = #{callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="stsCd != null">
+        sts_cd = #{stsCd,jdbcType=CHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where par_id = #{parId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ecommerce.pojo.ParParameter">
+    update par_parameter
+    set param_cd = #{paramCd,jdbcType=VARCHAR},
+      param_value = #{paramValue,jdbcType=VARCHAR},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      ` creation_date` = #{creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{callCnt,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      sts_cd = #{stsCd,jdbcType=CHAR},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where par_id = #{parId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.ParParameter">
+    update par_parameter
+    set param_cd = #{paramCd,jdbcType=VARCHAR},
+      param_value = #{paramValue,jdbcType=VARCHAR},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      ` creation_date` = #{creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{callCnt,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      sts_cd = #{stsCd,jdbcType=CHAR}
+    where par_id = #{parId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecommerce.dao.ShaShippingAddressMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.ShaShippingAddress">
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="call_cnt" jdbcType="INTEGER" property="callCnt" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="sts_cd" jdbcType="CHAR" property="stsCd" />
+    <result column="family_name" jdbcType="VARCHAR" property="familyName" />
+    <result column="given_name" jdbcType="VARCHAR" property="givenName" />
+    <result column="country_name" jdbcType="VARCHAR" property="countryName" />
+    <result column="country_iso_cd" jdbcType="VARCHAR" property="countryIsoCd" />
+    <result column="state_or_province_name" jdbcType="VARCHAR" property="stateOrProvinceName" />
+    <result column="state_or_province_cd" jdbcType="VARCHAR" property="stateOrProvinceCd" />
+    <result column="city_name" jdbcType="VARCHAR" property="cityName" />
+    <result column="address_line1" jdbcType="VARCHAR" property="addressLine1" />
+    <result column="address_line2" jdbcType="VARCHAR" property="addressLine2" />
+    <result column="address_line3" jdbcType="VARCHAR" property="addressLine3" />
+    <result column="postal_cd" jdbcType="VARCHAR" property="postalCd" />
+    <result column="contact_phone_no" jdbcType="VARCHAR" property="contactPhoneNo" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="sto_id" jdbcType="INTEGER" property="stoId" />
+    <result column="carrier_name" jdbcType="VARCHAR" property="carrierName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    created_by, creation_date, last_update_by, last_update_date, call_cnt, remark, sts_cd, 
+    family_name, given_name, country_name, country_iso_cd, state_or_province_name, state_or_province_cd, 
+    city_name, address_line1, address_line2, address_line3, postal_cd, contact_phone_no, 
+    email, sto_id, carrier_name
+  </sql>
+  <select id="selectByExample" parameterType="com.ecommerce.pojo.ShaShippingAddressExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sha_shipping_address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.ShaShippingAddressExample">
+    delete from sha_shipping_address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ecommerce.pojo.ShaShippingAddress">
+    insert into sha_shipping_address (created_by, creation_date, last_update_by, 
+      last_update_date, call_cnt, remark, 
+      sts_cd, family_name, given_name, 
+      country_name, country_iso_cd, state_or_province_name, 
+      state_or_province_cd, city_name, address_line1, 
+      address_line2, address_line3, postal_cd, 
+      contact_phone_no, email, sto_id, 
+      carrier_name)
+    values (#{createdBy,jdbcType=VARCHAR}, #{creationDate,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=VARCHAR}, 
+      #{lastUpdateDate,jdbcType=TIMESTAMP}, #{callCnt,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{stsCd,jdbcType=CHAR}, #{familyName,jdbcType=VARCHAR}, #{givenName,jdbcType=VARCHAR}, 
+      #{countryName,jdbcType=VARCHAR}, #{countryIsoCd,jdbcType=VARCHAR}, #{stateOrProvinceName,jdbcType=VARCHAR}, 
+      #{stateOrProvinceCd,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, #{addressLine1,jdbcType=VARCHAR}, 
+      #{addressLine2,jdbcType=VARCHAR}, #{addressLine3,jdbcType=VARCHAR}, #{postalCd,jdbcType=VARCHAR}, 
+      #{contactPhoneNo,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{stoId,jdbcType=INTEGER}, 
+      #{carrierName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ecommerce.pojo.ShaShippingAddress">
+    insert into sha_shipping_address
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="callCnt != null">
+        call_cnt,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="stsCd != null">
+        sts_cd,
+      </if>
+      <if test="familyName != null">
+        family_name,
+      </if>
+      <if test="givenName != null">
+        given_name,
+      </if>
+      <if test="countryName != null">
+        country_name,
+      </if>
+      <if test="countryIsoCd != null">
+        country_iso_cd,
+      </if>
+      <if test="stateOrProvinceName != null">
+        state_or_province_name,
+      </if>
+      <if test="stateOrProvinceCd != null">
+        state_or_province_cd,
+      </if>
+      <if test="cityName != null">
+        city_name,
+      </if>
+      <if test="addressLine1 != null">
+        address_line1,
+      </if>
+      <if test="addressLine2 != null">
+        address_line2,
+      </if>
+      <if test="addressLine3 != null">
+        address_line3,
+      </if>
+      <if test="postalCd != null">
+        postal_cd,
+      </if>
+      <if test="contactPhoneNo != null">
+        contact_phone_no,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="stoId != null">
+        sto_id,
+      </if>
+      <if test="carrierName != null">
+        carrier_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callCnt != null">
+        #{callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="stsCd != null">
+        #{stsCd,jdbcType=CHAR},
+      </if>
+      <if test="familyName != null">
+        #{familyName,jdbcType=VARCHAR},
+      </if>
+      <if test="givenName != null">
+        #{givenName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryName != null">
+        #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryIsoCd != null">
+        #{countryIsoCd,jdbcType=VARCHAR},
+      </if>
+      <if test="stateOrProvinceName != null">
+        #{stateOrProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="stateOrProvinceCd != null">
+        #{stateOrProvinceCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="addressLine1 != null">
+        #{addressLine1,jdbcType=VARCHAR},
+      </if>
+      <if test="addressLine2 != null">
+        #{addressLine2,jdbcType=VARCHAR},
+      </if>
+      <if test="addressLine3 != null">
+        #{addressLine3,jdbcType=VARCHAR},
+      </if>
+      <if test="postalCd != null">
+        #{postalCd,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhoneNo != null">
+        #{contactPhoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="stoId != null">
+        #{stoId,jdbcType=INTEGER},
+      </if>
+      <if test="carrierName != null">
+        #{carrierName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ecommerce.pojo.ShaShippingAddressExample" resultType="java.lang.Long">
+    select count(*) from sha_shipping_address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sha_shipping_address
+    <set>
+      <if test="record.createdBy != null">
+        created_by = #{record.createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creationDate != null">
+        creation_date = #{record.creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateBy != null">
+        last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdateDate != null">
+        last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.callCnt != null">
+        call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stsCd != null">
+        sts_cd = #{record.stsCd,jdbcType=CHAR},
+      </if>
+      <if test="record.familyName != null">
+        family_name = #{record.familyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.givenName != null">
+        given_name = #{record.givenName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countryName != null">
+        country_name = #{record.countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countryIsoCd != null">
+        country_iso_cd = #{record.countryIsoCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stateOrProvinceName != null">
+        state_or_province_name = #{record.stateOrProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stateOrProvinceCd != null">
+        state_or_province_cd = #{record.stateOrProvinceCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityName != null">
+        city_name = #{record.cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressLine1 != null">
+        address_line1 = #{record.addressLine1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressLine2 != null">
+        address_line2 = #{record.addressLine2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressLine3 != null">
+        address_line3 = #{record.addressLine3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postalCd != null">
+        postal_cd = #{record.postalCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactPhoneNo != null">
+        contact_phone_no = #{record.contactPhoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stoId != null">
+        sto_id = #{record.stoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.carrierName != null">
+        carrier_name = #{record.carrierName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sha_shipping_address
+    set created_by = #{record.createdBy,jdbcType=VARCHAR},
+      creation_date = #{record.creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      sts_cd = #{record.stsCd,jdbcType=CHAR},
+      family_name = #{record.familyName,jdbcType=VARCHAR},
+      given_name = #{record.givenName,jdbcType=VARCHAR},
+      country_name = #{record.countryName,jdbcType=VARCHAR},
+      country_iso_cd = #{record.countryIsoCd,jdbcType=VARCHAR},
+      state_or_province_name = #{record.stateOrProvinceName,jdbcType=VARCHAR},
+      state_or_province_cd = #{record.stateOrProvinceCd,jdbcType=VARCHAR},
+      city_name = #{record.cityName,jdbcType=VARCHAR},
+      address_line1 = #{record.addressLine1,jdbcType=VARCHAR},
+      address_line2 = #{record.addressLine2,jdbcType=VARCHAR},
+      address_line3 = #{record.addressLine3,jdbcType=VARCHAR},
+      postal_cd = #{record.postalCd,jdbcType=VARCHAR},
+      contact_phone_no = #{record.contactPhoneNo,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      sto_id = #{record.stoId,jdbcType=INTEGER},
+      carrier_name = #{record.carrierName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

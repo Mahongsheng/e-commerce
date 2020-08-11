@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecommerce.dao.StoStoreOrderMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.StoStoreOrder">
+    <id column="sto_id" jdbcType="INTEGER" property="stoId" />
+    <result column="str_id" jdbcType="INTEGER" property="strId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="order_created_time" jdbcType="VARCHAR" property="orderCreatedTime" />
+    <result column="paid_time" jdbcType="VARCHAR" property="paidTime" />
+    <result column="last_modified_time" jdbcType="VARCHAR" property="lastModifiedTime" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="call_cnt" jdbcType="INTEGER" property="callCnt" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="sts_cd" jdbcType="CHAR" property="stsCd" />
+    <result column="platform_type" jdbcType="VARCHAR" property="platformType" />
+    <result column="cancel_compile_date" jdbcType="VARCHAR" property="cancelCompileDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    sto_id, str_id, order_id, order_created_time, paid_time, last_modified_time, created_by, 
+    creation_date, last_update_by, last_update_date, call_cnt, remark, sts_cd, platform_type, 
+    cancel_compile_date
+  </sql>
+  <select id="selectByExample" parameterType="com.ecommerce.pojo.StoStoreOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sto_store_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sto_store_order
+    where sto_id = #{stoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sto_store_order
+    where sto_id = #{stoId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.StoStoreOrderExample">
+    delete from sto_store_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ecommerce.pojo.StoStoreOrder">
+    insert into sto_store_order (sto_id, str_id, order_id, 
+      order_created_time, paid_time, last_modified_time, 
+      created_by, creation_date, last_update_by, 
+      last_update_date, call_cnt, remark, 
+      sts_cd, platform_type, cancel_compile_date
+      )
+    values (#{stoId,jdbcType=INTEGER}, #{strId,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, 
+      #{orderCreatedTime,jdbcType=VARCHAR}, #{paidTime,jdbcType=VARCHAR}, #{lastModifiedTime,jdbcType=VARCHAR}, 
+      #{createdBy,jdbcType=VARCHAR}, #{creationDate,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=VARCHAR}, 
+      #{lastUpdateDate,jdbcType=TIMESTAMP}, #{callCnt,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{stsCd,jdbcType=CHAR}, #{platformType,jdbcType=VARCHAR}, #{cancelCompileDate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ecommerce.pojo.StoStoreOrder">
+    insert into sto_store_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="stoId != null">
+        sto_id,
+      </if>
+      <if test="strId != null">
+        str_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="orderCreatedTime != null">
+        order_created_time,
+      </if>
+      <if test="paidTime != null">
+        paid_time,
+      </if>
+      <if test="lastModifiedTime != null">
+        last_modified_time,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="callCnt != null">
+        call_cnt,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="stsCd != null">
+        sts_cd,
+      </if>
+      <if test="platformType != null">
+        platform_type,
+      </if>
+      <if test="cancelCompileDate != null">
+        cancel_compile_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="stoId != null">
+        #{stoId,jdbcType=INTEGER},
+      </if>
+      <if test="strId != null">
+        #{strId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCreatedTime != null">
+        #{orderCreatedTime,jdbcType=VARCHAR},
+      </if>
+      <if test="paidTime != null">
+        #{paidTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifiedTime != null">
+        #{lastModifiedTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callCnt != null">
+        #{callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="stsCd != null">
+        #{stsCd,jdbcType=CHAR},
+      </if>
+      <if test="platformType != null">
+        #{platformType,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelCompileDate != null">
+        #{cancelCompileDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ecommerce.pojo.StoStoreOrderExample" resultType="java.lang.Long">
+    select count(*) from sto_store_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sto_store_order
+    <set>
+      <if test="record.stoId != null">
+        sto_id = #{record.stoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.strId != null">
+        str_id = #{record.strId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderCreatedTime != null">
+        order_created_time = #{record.orderCreatedTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paidTime != null">
+        paid_time = #{record.paidTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastModifiedTime != null">
+        last_modified_time = #{record.lastModifiedTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdBy != null">
+        created_by = #{record.createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creationDate != null">
+        creation_date = #{record.creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateBy != null">
+        last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdateDate != null">
+        last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.callCnt != null">
+        call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stsCd != null">
+        sts_cd = #{record.stsCd,jdbcType=CHAR},
+      </if>
+      <if test="record.platformType != null">
+        platform_type = #{record.platformType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cancelCompileDate != null">
+        cancel_compile_date = #{record.cancelCompileDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sto_store_order
+    set sto_id = #{record.stoId,jdbcType=INTEGER},
+      str_id = #{record.strId,jdbcType=INTEGER},
+      order_id = #{record.orderId,jdbcType=VARCHAR},
+      order_created_time = #{record.orderCreatedTime,jdbcType=VARCHAR},
+      paid_time = #{record.paidTime,jdbcType=VARCHAR},
+      last_modified_time = #{record.lastModifiedTime,jdbcType=VARCHAR},
+      created_by = #{record.createdBy,jdbcType=VARCHAR},
+      creation_date = #{record.creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      sts_cd = #{record.stsCd,jdbcType=CHAR},
+      platform_type = #{record.platformType,jdbcType=VARCHAR},
+      cancel_compile_date = #{record.cancelCompileDate,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.StoStoreOrder">
+    update sto_store_order
+    <set>
+      <if test="strId != null">
+        str_id = #{strId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCreatedTime != null">
+        order_created_time = #{orderCreatedTime,jdbcType=VARCHAR},
+      </if>
+      <if test="paidTime != null">
+        paid_time = #{paidTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifiedTime != null">
+        last_modified_time = #{lastModifiedTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callCnt != null">
+        call_cnt = #{callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="stsCd != null">
+        sts_cd = #{stsCd,jdbcType=CHAR},
+      </if>
+      <if test="platformType != null">
+        platform_type = #{platformType,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelCompileDate != null">
+        cancel_compile_date = #{cancelCompileDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sto_id = #{stoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.StoStoreOrder">
+    update sto_store_order
+    set str_id = #{strId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      order_created_time = #{orderCreatedTime,jdbcType=VARCHAR},
+      paid_time = #{paidTime,jdbcType=VARCHAR},
+      last_modified_time = #{lastModifiedTime,jdbcType=VARCHAR},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{callCnt,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      sts_cd = #{stsCd,jdbcType=CHAR},
+      platform_type = #{platformType,jdbcType=VARCHAR},
+      cancel_compile_date = #{cancelCompileDate,jdbcType=VARCHAR}
+    where sto_id = #{stoId,jdbcType=INTEGER}
+  </update>
+</mapper>

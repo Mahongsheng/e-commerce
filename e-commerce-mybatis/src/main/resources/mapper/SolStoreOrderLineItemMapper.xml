@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecommerce.dao.SolStoreOrderLineItemMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.SolStoreOrderLineItem">
+    <id column="sol_id" jdbcType="INTEGER" property="solId" />
+    <result column="order_item_id" jdbcType="VARCHAR" property="orderItemId" />
+    <result column="sto_id" jdbcType="INTEGER" property="stoId" />
+    <result column="sales_price" jdbcType="DECIMAL" property="salesPrice" />
+    <result column="qty" jdbcType="INTEGER" property="qty" />
+    <result column="sku_no" jdbcType="VARCHAR" property="skuNo" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="call_cnt" jdbcType="INTEGER" property="callCnt" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="sts_cd" jdbcType="CHAR" property="stsCd" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ecommerce.pojo.SolStoreOrderLineItem">
+    <result column="buyer_checkout_message" jdbcType="LONGVARCHAR" property="buyerCheckoutMessage" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    sol_id, order_item_id, sto_id, sales_price, qty, sku_no, created_by, creation_date, 
+    last_update_by, last_update_date, call_cnt, remark, sts_cd
+  </sql>
+  <sql id="Blob_Column_List">
+    buyer_checkout_message
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.ecommerce.pojo.SolStoreOrderLineItemExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sol_store_order_line_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.ecommerce.pojo.SolStoreOrderLineItemExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sol_store_order_line_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sol_store_order_line_item
+    where sol_id = #{solId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sol_store_order_line_item
+    where sol_id = #{solId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.SolStoreOrderLineItemExample">
+    delete from sol_store_order_line_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ecommerce.pojo.SolStoreOrderLineItem">
+    insert into sol_store_order_line_item (sol_id, order_item_id, sto_id, 
+      sales_price, qty, sku_no, 
+      created_by, creation_date, last_update_by, 
+      last_update_date, call_cnt, remark, 
+      sts_cd, buyer_checkout_message)
+    values (#{solId,jdbcType=INTEGER}, #{orderItemId,jdbcType=VARCHAR}, #{stoId,jdbcType=INTEGER}, 
+      #{salesPrice,jdbcType=DECIMAL}, #{qty,jdbcType=INTEGER}, #{skuNo,jdbcType=VARCHAR}, 
+      #{createdBy,jdbcType=VARCHAR}, #{creationDate,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=VARCHAR}, 
+      #{lastUpdateDate,jdbcType=TIMESTAMP}, #{callCnt,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{stsCd,jdbcType=CHAR}, #{buyerCheckoutMessage,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ecommerce.pojo.SolStoreOrderLineItem">
+    insert into sol_store_order_line_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="solId != null">
+        sol_id,
+      </if>
+      <if test="orderItemId != null">
+        order_item_id,
+      </if>
+      <if test="stoId != null">
+        sto_id,
+      </if>
+      <if test="salesPrice != null">
+        sales_price,
+      </if>
+      <if test="qty != null">
+        qty,
+      </if>
+      <if test="skuNo != null">
+        sku_no,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="callCnt != null">
+        call_cnt,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="stsCd != null">
+        sts_cd,
+      </if>
+      <if test="buyerCheckoutMessage != null">
+        buyer_checkout_message,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="solId != null">
+        #{solId,jdbcType=INTEGER},
+      </if>
+      <if test="orderItemId != null">
+        #{orderItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="stoId != null">
+        #{stoId,jdbcType=INTEGER},
+      </if>
+      <if test="salesPrice != null">
+        #{salesPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="qty != null">
+        #{qty,jdbcType=INTEGER},
+      </if>
+      <if test="skuNo != null">
+        #{skuNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callCnt != null">
+        #{callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="stsCd != null">
+        #{stsCd,jdbcType=CHAR},
+      </if>
+      <if test="buyerCheckoutMessage != null">
+        #{buyerCheckoutMessage,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ecommerce.pojo.SolStoreOrderLineItemExample" resultType="java.lang.Long">
+    select count(*) from sol_store_order_line_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sol_store_order_line_item
+    <set>
+      <if test="record.solId != null">
+        sol_id = #{record.solId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderItemId != null">
+        order_item_id = #{record.orderItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stoId != null">
+        sto_id = #{record.stoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.salesPrice != null">
+        sales_price = #{record.salesPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.qty != null">
+        qty = #{record.qty,jdbcType=INTEGER},
+      </if>
+      <if test="record.skuNo != null">
+        sku_no = #{record.skuNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdBy != null">
+        created_by = #{record.createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creationDate != null">
+        creation_date = #{record.creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateBy != null">
+        last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdateDate != null">
+        last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.callCnt != null">
+        call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stsCd != null">
+        sts_cd = #{record.stsCd,jdbcType=CHAR},
+      </if>
+      <if test="record.buyerCheckoutMessage != null">
+        buyer_checkout_message = #{record.buyerCheckoutMessage,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update sol_store_order_line_item
+    set sol_id = #{record.solId,jdbcType=INTEGER},
+      order_item_id = #{record.orderItemId,jdbcType=VARCHAR},
+      sto_id = #{record.stoId,jdbcType=INTEGER},
+      sales_price = #{record.salesPrice,jdbcType=DECIMAL},
+      qty = #{record.qty,jdbcType=INTEGER},
+      sku_no = #{record.skuNo,jdbcType=VARCHAR},
+      created_by = #{record.createdBy,jdbcType=VARCHAR},
+      creation_date = #{record.creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      sts_cd = #{record.stsCd,jdbcType=CHAR},
+      buyer_checkout_message = #{record.buyerCheckoutMessage,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sol_store_order_line_item
+    set sol_id = #{record.solId,jdbcType=INTEGER},
+      order_item_id = #{record.orderItemId,jdbcType=VARCHAR},
+      sto_id = #{record.stoId,jdbcType=INTEGER},
+      sales_price = #{record.salesPrice,jdbcType=DECIMAL},
+      qty = #{record.qty,jdbcType=INTEGER},
+      sku_no = #{record.skuNo,jdbcType=VARCHAR},
+      created_by = #{record.createdBy,jdbcType=VARCHAR},
+      creation_date = #{record.creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      sts_cd = #{record.stsCd,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.SolStoreOrderLineItem">
+    update sol_store_order_line_item
+    <set>
+      <if test="orderItemId != null">
+        order_item_id = #{orderItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="stoId != null">
+        sto_id = #{stoId,jdbcType=INTEGER},
+      </if>
+      <if test="salesPrice != null">
+        sales_price = #{salesPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="qty != null">
+        qty = #{qty,jdbcType=INTEGER},
+      </if>
+      <if test="skuNo != null">
+        sku_no = #{skuNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callCnt != null">
+        call_cnt = #{callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="stsCd != null">
+        sts_cd = #{stsCd,jdbcType=CHAR},
+      </if>
+      <if test="buyerCheckoutMessage != null">
+        buyer_checkout_message = #{buyerCheckoutMessage,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where sol_id = #{solId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ecommerce.pojo.SolStoreOrderLineItem">
+    update sol_store_order_line_item
+    set order_item_id = #{orderItemId,jdbcType=VARCHAR},
+      sto_id = #{stoId,jdbcType=INTEGER},
+      sales_price = #{salesPrice,jdbcType=DECIMAL},
+      qty = #{qty,jdbcType=INTEGER},
+      sku_no = #{skuNo,jdbcType=VARCHAR},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{callCnt,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      sts_cd = #{stsCd,jdbcType=CHAR},
+      buyer_checkout_message = #{buyerCheckoutMessage,jdbcType=LONGVARCHAR}
+    where sol_id = #{solId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.SolStoreOrderLineItem">
+    update sol_store_order_line_item
+    set order_item_id = #{orderItemId,jdbcType=VARCHAR},
+      sto_id = #{stoId,jdbcType=INTEGER},
+      sales_price = #{salesPrice,jdbcType=DECIMAL},
+      qty = #{qty,jdbcType=INTEGER},
+      sku_no = #{skuNo,jdbcType=VARCHAR},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{callCnt,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      sts_cd = #{stsCd,jdbcType=CHAR}
+    where sol_id = #{solId,jdbcType=INTEGER}
+  </update>
+</mapper>

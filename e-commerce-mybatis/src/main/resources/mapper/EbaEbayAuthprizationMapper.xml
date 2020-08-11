@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecommerce.dao.EbaEbayAuthprizationMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.EbaEbayAuthprization">
+    <id column="eba_id" jdbcType="INTEGER" property="ebaId" />
+    <result column="str_id" jdbcType="INTEGER" property="strId" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="secret_key" jdbcType="VARCHAR" property="secretKey" />
+    <result column="last_modified_time" jdbcType="VARCHAR" property="lastModifiedTime" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="call_cnt" jdbcType="INTEGER" property="callCnt" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="sts_cd" jdbcType="CHAR" property="stsCd" />
+    <result column="exp_date" jdbcType="TIMESTAMP" property="expDate" />
+    <result column="cancel_date" jdbcType="TIMESTAMP" property="cancelDate" />
+    <result column="account_id" jdbcType="VARCHAR" property="accountId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ecommerce.pojo.EbaEbayAuthprization">
+    <result column="token" jdbcType="LONGVARCHAR" property="token" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    eba_id, str_id, app_id, secret_key, last_modified_time, created_by, creation_date, 
+    last_update_by, last_update_date, call_cnt, remark, sts_cd, exp_date, cancel_date, 
+    account_id
+  </sql>
+  <sql id="Blob_Column_List">
+    token
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.ecommerce.pojo.EbaEbayAuthprizationExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from eba_ebay_authprization
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.ecommerce.pojo.EbaEbayAuthprizationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from eba_ebay_authprization
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from eba_ebay_authprization
+    where eba_id = #{ebaId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from eba_ebay_authprization
+    where eba_id = #{ebaId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.EbaEbayAuthprizationExample">
+    delete from eba_ebay_authprization
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ecommerce.pojo.EbaEbayAuthprization">
+    insert into eba_ebay_authprization (eba_id, str_id, app_id, 
+      secret_key, last_modified_time, created_by, 
+      creation_date, last_update_by, last_update_date, 
+      call_cnt, remark, sts_cd, 
+      exp_date, cancel_date, account_id, 
+      token)
+    values (#{ebaId,jdbcType=INTEGER}, #{strId,jdbcType=INTEGER}, #{appId,jdbcType=VARCHAR}, 
+      #{secretKey,jdbcType=VARCHAR}, #{lastModifiedTime,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, 
+      #{creationDate,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=VARCHAR}, #{lastUpdateDate,jdbcType=TIMESTAMP}, 
+      #{callCnt,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{stsCd,jdbcType=CHAR}, 
+      #{expDate,jdbcType=TIMESTAMP}, #{cancelDate,jdbcType=TIMESTAMP}, #{accountId,jdbcType=VARCHAR}, 
+      #{token,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ecommerce.pojo.EbaEbayAuthprization">
+    insert into eba_ebay_authprization
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ebaId != null">
+        eba_id,
+      </if>
+      <if test="strId != null">
+        str_id,
+      </if>
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="secretKey != null">
+        secret_key,
+      </if>
+      <if test="lastModifiedTime != null">
+        last_modified_time,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="callCnt != null">
+        call_cnt,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="stsCd != null">
+        sts_cd,
+      </if>
+      <if test="expDate != null">
+        exp_date,
+      </if>
+      <if test="cancelDate != null">
+        cancel_date,
+      </if>
+      <if test="accountId != null">
+        account_id,
+      </if>
+      <if test="token != null">
+        token,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ebaId != null">
+        #{ebaId,jdbcType=INTEGER},
+      </if>
+      <if test="strId != null">
+        #{strId,jdbcType=INTEGER},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="secretKey != null">
+        #{secretKey,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifiedTime != null">
+        #{lastModifiedTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callCnt != null">
+        #{callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="stsCd != null">
+        #{stsCd,jdbcType=CHAR},
+      </if>
+      <if test="expDate != null">
+        #{expDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelDate != null">
+        #{cancelDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountId != null">
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        #{token,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ecommerce.pojo.EbaEbayAuthprizationExample" resultType="java.lang.Long">
+    select count(*) from eba_ebay_authprization
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update eba_ebay_authprization
+    <set>
+      <if test="record.ebaId != null">
+        eba_id = #{record.ebaId,jdbcType=INTEGER},
+      </if>
+      <if test="record.strId != null">
+        str_id = #{record.strId,jdbcType=INTEGER},
+      </if>
+      <if test="record.appId != null">
+        app_id = #{record.appId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.secretKey != null">
+        secret_key = #{record.secretKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastModifiedTime != null">
+        last_modified_time = #{record.lastModifiedTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdBy != null">
+        created_by = #{record.createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creationDate != null">
+        creation_date = #{record.creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateBy != null">
+        last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdateDate != null">
+        last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.callCnt != null">
+        call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stsCd != null">
+        sts_cd = #{record.stsCd,jdbcType=CHAR},
+      </if>
+      <if test="record.expDate != null">
+        exp_date = #{record.expDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.cancelDate != null">
+        cancel_date = #{record.cancelDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.accountId != null">
+        account_id = #{record.accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.token != null">
+        token = #{record.token,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update eba_ebay_authprization
+    set eba_id = #{record.ebaId,jdbcType=INTEGER},
+      str_id = #{record.strId,jdbcType=INTEGER},
+      app_id = #{record.appId,jdbcType=VARCHAR},
+      secret_key = #{record.secretKey,jdbcType=VARCHAR},
+      last_modified_time = #{record.lastModifiedTime,jdbcType=VARCHAR},
+      created_by = #{record.createdBy,jdbcType=VARCHAR},
+      creation_date = #{record.creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      sts_cd = #{record.stsCd,jdbcType=CHAR},
+      exp_date = #{record.expDate,jdbcType=TIMESTAMP},
+      cancel_date = #{record.cancelDate,jdbcType=TIMESTAMP},
+      account_id = #{record.accountId,jdbcType=VARCHAR},
+      token = #{record.token,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update eba_ebay_authprization
+    set eba_id = #{record.ebaId,jdbcType=INTEGER},
+      str_id = #{record.strId,jdbcType=INTEGER},
+      app_id = #{record.appId,jdbcType=VARCHAR},
+      secret_key = #{record.secretKey,jdbcType=VARCHAR},
+      last_modified_time = #{record.lastModifiedTime,jdbcType=VARCHAR},
+      created_by = #{record.createdBy,jdbcType=VARCHAR},
+      creation_date = #{record.creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      sts_cd = #{record.stsCd,jdbcType=CHAR},
+      exp_date = #{record.expDate,jdbcType=TIMESTAMP},
+      cancel_date = #{record.cancelDate,jdbcType=TIMESTAMP},
+      account_id = #{record.accountId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.EbaEbayAuthprization">
+    update eba_ebay_authprization
+    <set>
+      <if test="strId != null">
+        str_id = #{strId,jdbcType=INTEGER},
+      </if>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="secretKey != null">
+        secret_key = #{secretKey,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifiedTime != null">
+        last_modified_time = #{lastModifiedTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callCnt != null">
+        call_cnt = #{callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="stsCd != null">
+        sts_cd = #{stsCd,jdbcType=CHAR},
+      </if>
+      <if test="expDate != null">
+        exp_date = #{expDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelDate != null">
+        cancel_date = #{cancelDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountId != null">
+        account_id = #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        token = #{token,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where eba_id = #{ebaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ecommerce.pojo.EbaEbayAuthprization">
+    update eba_ebay_authprization
+    set str_id = #{strId,jdbcType=INTEGER},
+      app_id = #{appId,jdbcType=VARCHAR},
+      secret_key = #{secretKey,jdbcType=VARCHAR},
+      last_modified_time = #{lastModifiedTime,jdbcType=VARCHAR},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{callCnt,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      sts_cd = #{stsCd,jdbcType=CHAR},
+      exp_date = #{expDate,jdbcType=TIMESTAMP},
+      cancel_date = #{cancelDate,jdbcType=TIMESTAMP},
+      account_id = #{accountId,jdbcType=VARCHAR},
+      token = #{token,jdbcType=LONGVARCHAR}
+    where eba_id = #{ebaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.EbaEbayAuthprization">
+    update eba_ebay_authprization
+    set str_id = #{strId,jdbcType=INTEGER},
+      app_id = #{appId,jdbcType=VARCHAR},
+      secret_key = #{secretKey,jdbcType=VARCHAR},
+      last_modified_time = #{lastModifiedTime,jdbcType=VARCHAR},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{callCnt,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      sts_cd = #{stsCd,jdbcType=CHAR},
+      exp_date = #{expDate,jdbcType=TIMESTAMP},
+      cancel_date = #{cancelDate,jdbcType=TIMESTAMP},
+      account_id = #{accountId,jdbcType=VARCHAR}
+    where eba_id = #{ebaId,jdbcType=INTEGER}
+  </update>
+</mapper>

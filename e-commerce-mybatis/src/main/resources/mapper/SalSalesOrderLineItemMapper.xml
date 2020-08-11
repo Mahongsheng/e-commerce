@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecommerce.dao.SalSalesOrderLineItemMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.SalSalesOrderLineItem">
+    <id column="sal_id" jdbcType="INTEGER" property="salId" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="call_cnt" jdbcType="INTEGER" property="callCnt" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="sts_cd" jdbcType="CHAR" property="stsCd" />
+    <result column="sao_id" jdbcType="INTEGER" property="saoId" />
+    <result column="pro_id" jdbcType="INTEGER" property="proId" />
+    <result column="qty" jdbcType="INTEGER" property="qty" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="sol_id" jdbcType="INTEGER" property="solId" />
+    <result column="tracking_no" jdbcType="VARCHAR" property="trackingNo" />
+    <result column="wsp_name" jdbcType="VARCHAR" property="wspName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    sal_id, created_by, creation_date, last_update_by, last_update_date, call_cnt, remark, 
+    sts_cd, sao_id, pro_id, qty, price, sol_id, tracking_no, wsp_name
+  </sql>
+  <select id="selectByExample" parameterType="com.ecommerce.pojo.SalSalesOrderLineItemExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sal_sales_order_line_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sal_sales_order_line_item
+    where sal_id = #{salId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sal_sales_order_line_item
+    where sal_id = #{salId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.SalSalesOrderLineItemExample">
+    delete from sal_sales_order_line_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ecommerce.pojo.SalSalesOrderLineItem">
+    insert into sal_sales_order_line_item (sal_id, created_by, creation_date, 
+      last_update_by, last_update_date, call_cnt, 
+      remark, sts_cd, sao_id, 
+      pro_id, qty, price, 
+      sol_id, tracking_no, wsp_name
+      )
+    values (#{salId,jdbcType=INTEGER}, #{createdBy,jdbcType=VARCHAR}, #{creationDate,jdbcType=TIMESTAMP}, 
+      #{lastUpdateBy,jdbcType=VARCHAR}, #{lastUpdateDate,jdbcType=TIMESTAMP}, #{callCnt,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{stsCd,jdbcType=CHAR}, #{saoId,jdbcType=INTEGER}, 
+      #{proId,jdbcType=INTEGER}, #{qty,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, 
+      #{solId,jdbcType=INTEGER}, #{trackingNo,jdbcType=VARCHAR}, #{wspName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ecommerce.pojo.SalSalesOrderLineItem">
+    insert into sal_sales_order_line_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="salId != null">
+        sal_id,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="callCnt != null">
+        call_cnt,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="stsCd != null">
+        sts_cd,
+      </if>
+      <if test="saoId != null">
+        sao_id,
+      </if>
+      <if test="proId != null">
+        pro_id,
+      </if>
+      <if test="qty != null">
+        qty,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="solId != null">
+        sol_id,
+      </if>
+      <if test="trackingNo != null">
+        tracking_no,
+      </if>
+      <if test="wspName != null">
+        wsp_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="salId != null">
+        #{salId,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callCnt != null">
+        #{callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="stsCd != null">
+        #{stsCd,jdbcType=CHAR},
+      </if>
+      <if test="saoId != null">
+        #{saoId,jdbcType=INTEGER},
+      </if>
+      <if test="proId != null">
+        #{proId,jdbcType=INTEGER},
+      </if>
+      <if test="qty != null">
+        #{qty,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="solId != null">
+        #{solId,jdbcType=INTEGER},
+      </if>
+      <if test="trackingNo != null">
+        #{trackingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="wspName != null">
+        #{wspName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ecommerce.pojo.SalSalesOrderLineItemExample" resultType="java.lang.Long">
+    select count(*) from sal_sales_order_line_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sal_sales_order_line_item
+    <set>
+      <if test="record.salId != null">
+        sal_id = #{record.salId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdBy != null">
+        created_by = #{record.createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creationDate != null">
+        creation_date = #{record.creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateBy != null">
+        last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdateDate != null">
+        last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.callCnt != null">
+        call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stsCd != null">
+        sts_cd = #{record.stsCd,jdbcType=CHAR},
+      </if>
+      <if test="record.saoId != null">
+        sao_id = #{record.saoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.proId != null">
+        pro_id = #{record.proId,jdbcType=INTEGER},
+      </if>
+      <if test="record.qty != null">
+        qty = #{record.qty,jdbcType=INTEGER},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.solId != null">
+        sol_id = #{record.solId,jdbcType=INTEGER},
+      </if>
+      <if test="record.trackingNo != null">
+        tracking_no = #{record.trackingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wspName != null">
+        wsp_name = #{record.wspName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sal_sales_order_line_item
+    set sal_id = #{record.salId,jdbcType=INTEGER},
+      created_by = #{record.createdBy,jdbcType=VARCHAR},
+      creation_date = #{record.creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      sts_cd = #{record.stsCd,jdbcType=CHAR},
+      sao_id = #{record.saoId,jdbcType=INTEGER},
+      pro_id = #{record.proId,jdbcType=INTEGER},
+      qty = #{record.qty,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=DECIMAL},
+      sol_id = #{record.solId,jdbcType=INTEGER},
+      tracking_no = #{record.trackingNo,jdbcType=VARCHAR},
+      wsp_name = #{record.wspName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.SalSalesOrderLineItem">
+    update sal_sales_order_line_item
+    <set>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callCnt != null">
+        call_cnt = #{callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="stsCd != null">
+        sts_cd = #{stsCd,jdbcType=CHAR},
+      </if>
+      <if test="saoId != null">
+        sao_id = #{saoId,jdbcType=INTEGER},
+      </if>
+      <if test="proId != null">
+        pro_id = #{proId,jdbcType=INTEGER},
+      </if>
+      <if test="qty != null">
+        qty = #{qty,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="solId != null">
+        sol_id = #{solId,jdbcType=INTEGER},
+      </if>
+      <if test="trackingNo != null">
+        tracking_no = #{trackingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="wspName != null">
+        wsp_name = #{wspName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sal_id = #{salId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.SalSalesOrderLineItem">
+    update sal_sales_order_line_item
+    set created_by = #{createdBy,jdbcType=VARCHAR},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{callCnt,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      sts_cd = #{stsCd,jdbcType=CHAR},
+      sao_id = #{saoId,jdbcType=INTEGER},
+      pro_id = #{proId,jdbcType=INTEGER},
+      qty = #{qty,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      sol_id = #{solId,jdbcType=INTEGER},
+      tracking_no = #{trackingNo,jdbcType=VARCHAR},
+      wsp_name = #{wspName,jdbcType=VARCHAR}
+    where sal_id = #{salId,jdbcType=INTEGER}
+  </update>
+</mapper>

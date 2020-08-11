@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecommerce.dao.WitWishlistMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.WitWishlist">
+    <id column="wit_id" jdbcType="INTEGER" property="witId" />
+    <result column="dsr_id" jdbcType="INTEGER" property="dsrId" />
+    <result column="pro_id" jdbcType="INTEGER" property="proId" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="call_cnt" jdbcType="INTEGER" property="callCnt" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="sts_cd" jdbcType="CHAR" property="stsCd" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    wit_id, dsr_id, pro_id, created_by, creation_date, last_update_by, last_update_date, 
+    call_cnt, remark, sts_cd
+  </sql>
+  <select id="selectByExample" parameterType="com.ecommerce.pojo.WitWishlistExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from wit_wishlist
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wit_wishlist
+    where wit_id = #{witId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from wit_wishlist
+    where wit_id = #{witId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.WitWishlistExample">
+    delete from wit_wishlist
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ecommerce.pojo.WitWishlist">
+    insert into wit_wishlist (wit_id, dsr_id, pro_id, 
+      created_by, creation_date, last_update_by, 
+      last_update_date, call_cnt, remark, 
+      sts_cd)
+    values (#{witId,jdbcType=INTEGER}, #{dsrId,jdbcType=INTEGER}, #{proId,jdbcType=INTEGER}, 
+      #{createdBy,jdbcType=VARCHAR}, #{creationDate,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=VARCHAR}, 
+      #{lastUpdateDate,jdbcType=TIMESTAMP}, #{callCnt,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{stsCd,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ecommerce.pojo.WitWishlist">
+    insert into wit_wishlist
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="witId != null">
+        wit_id,
+      </if>
+      <if test="dsrId != null">
+        dsr_id,
+      </if>
+      <if test="proId != null">
+        pro_id,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="callCnt != null">
+        call_cnt,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="stsCd != null">
+        sts_cd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="witId != null">
+        #{witId,jdbcType=INTEGER},
+      </if>
+      <if test="dsrId != null">
+        #{dsrId,jdbcType=INTEGER},
+      </if>
+      <if test="proId != null">
+        #{proId,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callCnt != null">
+        #{callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="stsCd != null">
+        #{stsCd,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ecommerce.pojo.WitWishlistExample" resultType="java.lang.Long">
+    select count(*) from wit_wishlist
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update wit_wishlist
+    <set>
+      <if test="record.witId != null">
+        wit_id = #{record.witId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dsrId != null">
+        dsr_id = #{record.dsrId,jdbcType=INTEGER},
+      </if>
+      <if test="record.proId != null">
+        pro_id = #{record.proId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdBy != null">
+        created_by = #{record.createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creationDate != null">
+        creation_date = #{record.creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateBy != null">
+        last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdateDate != null">
+        last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.callCnt != null">
+        call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stsCd != null">
+        sts_cd = #{record.stsCd,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update wit_wishlist
+    set wit_id = #{record.witId,jdbcType=INTEGER},
+      dsr_id = #{record.dsrId,jdbcType=INTEGER},
+      pro_id = #{record.proId,jdbcType=INTEGER},
+      created_by = #{record.createdBy,jdbcType=VARCHAR},
+      creation_date = #{record.creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      sts_cd = #{record.stsCd,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.WitWishlist">
+    update wit_wishlist
+    <set>
+      <if test="dsrId != null">
+        dsr_id = #{dsrId,jdbcType=INTEGER},
+      </if>
+      <if test="proId != null">
+        pro_id = #{proId,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callCnt != null">
+        call_cnt = #{callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="stsCd != null">
+        sts_cd = #{stsCd,jdbcType=CHAR},
+      </if>
+    </set>
+    where wit_id = #{witId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.WitWishlist">
+    update wit_wishlist
+    set dsr_id = #{dsrId,jdbcType=INTEGER},
+      pro_id = #{proId,jdbcType=INTEGER},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{callCnt,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      sts_cd = #{stsCd,jdbcType=CHAR}
+    where wit_id = #{witId,jdbcType=INTEGER}
+  </update>
+  <delete id="batchDeleteWishlist" parameterType="map">
+    delete from wit_wishlist
+    where dsr_id = #{dsrId,jdbcType=INTEGER}
+    and pro_id in
+    <foreach collection="proIds" item="proId" open="(" separator="," close=")">
+      #{proId, jdbcType=INTEGER}
+    </foreach>
+  </delete>
+  <select id="getWishlistByIdAndCat" resultType="com.ecommerce.dto.product.wishlist.ProductWishlistDTO">
+    SELECT pro.pro_id proId, wit.dsr_id dsrId, img.uri image,pro.title, pro.mininum_retail_price minRetailPrice, pro.retail_price retailPrice
+    FROM wit_wishlist wit, pro_product pro, prc_product_category prc, img_image img
+    WHERE wit.dsr_id = #{dsrId, jdbcType=INTEGER} AND wit.pro_id = pro.pro_id AND pro.prc_id = prc.prc_id AND prc.category_id = #{catId, jdbcType=INTEGER} AND pro.pro_id = img.entity_id AND img.sts_cd = "1" AND img.seq_no = 1 AND wit.sts_cd = 1;
+  </select>
+  <select id="getWishlistByIdNoCat" resultType="com.ecommerce.dto.product.wishlist.ProductWishlistDTO">
+    SELECT pro.pro_id proId, wit.dsr_id dsrId, img.uri image,pro.title, pro.mininum_retail_price minRetailPrice, pro.retail_price retailPrice
+    FROM wit_wishlist wit, pro_product pro, prc_product_category prc, img_image img
+    WHERE wit.dsr_id = #{dsrId, jdbcType=INTEGER} AND wit.pro_id = pro.pro_id AND pro.prc_id = prc.prc_id AND pro.pro_id = img.entity_id AND img.sts_cd = "1" AND img.seq_no = 1 AND wit.sts_cd = 1;
+  </select>
+  <select id="getAllCatFromWishlist" resultType="com.ecommerce.dto.product.wishlist.ProductCatsDTO">
+    SELECT prc.category_id catId, prc.category_name catName
+    FROM wit_wishlist wit, pro_product pro, prc_product_category prc
+    WHERE wit.dsr_id = #{dsrId, jdbcType=INTEGER} AND wit.pro_id = pro.pro_id AND pro.prc_id = prc.prc_id AND wit.sts_cd = 1
+    GROUP BY category_id;
+  </select>
+
+</mapper>

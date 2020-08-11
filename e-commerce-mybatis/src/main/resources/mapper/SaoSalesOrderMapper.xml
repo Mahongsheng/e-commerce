@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecommerce.dao.SaoSalesOrderMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.SaoSalesOrder">
+    <id column="sao_id" jdbcType="INTEGER" property="saoId" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="call_cnt" jdbcType="INTEGER" property="callCnt" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="sts_cd" jdbcType="CHAR" property="stsCd" />
+    <result column="man_id" jdbcType="INTEGER" property="manId" />
+    <result column="war_id" jdbcType="INTEGER" property="warId" />
+    <result column="sync_date" jdbcType="TIMESTAMP" property="syncDate" />
+    <result column="payment_date" jdbcType="TIMESTAMP" property="paymentDate" />
+    <result column="push_date" jdbcType="TIMESTAMP" property="pushDate" />
+    <result column="track_no_date" jdbcType="TIMESTAMP" property="trackNoDate" />
+    <result column="fulfillment_date" jdbcType="TIMESTAMP" property="fulfillmentDate" />
+    <result column="settlement_date" jdbcType="TIMESTAMP" property="settlementDate" />
+    <result column="product_amount" jdbcType="DECIMAL" property="productAmount" />
+    <result column="freight_cost" jdbcType="DECIMAL" property="freightCost" />
+    <result column="handling_fee" jdbcType="DECIMAL" property="handlingFee" />
+    <result column="customer_remark" jdbcType="VARCHAR" property="customerRemark" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="order_sts" jdbcType="VARCHAR" property="orderSts" />
+    <result column="refund_sts" jdbcType="VARCHAR" property="refundSts" />
+    <result column="delivery_sts" jdbcType="VARCHAR" property="deliverySts" />
+    <result column="sto_id" jdbcType="INTEGER" property="stoId" />
+    <result column="last_freight_cost" jdbcType="DECIMAL" property="lastFreightCost" />
+    <result column="cancel_time" jdbcType="TIMESTAMP" property="cancelTime" />
+    <result column="auto_pay_status" jdbcType="CHAR" property="autoPayStatus" />
+    <result column="auto_pay_time" jdbcType="VARCHAR" property="autoPayTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ecommerce.pojo.SaoSalesOrder">
+    <result column="buyer_checkout_message" jdbcType="LONGVARCHAR" property="buyerCheckoutMessage" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    sao_id, created_by, creation_date, last_update_by, last_update_date, call_cnt, remark, 
+    sts_cd, man_id, war_id, sync_date, payment_date, push_date, track_no_date, fulfillment_date, 
+    settlement_date, product_amount, freight_cost, handling_fee, customer_remark, order_no, 
+    order_sts, refund_sts, delivery_sts, sto_id, last_freight_cost, cancel_time, auto_pay_status, 
+    auto_pay_time
+  </sql>
+  <sql id="Blob_Column_List">
+    buyer_checkout_message
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.ecommerce.pojo.SaoSalesOrderExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sao_sales_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.ecommerce.pojo.SaoSalesOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sao_sales_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sao_sales_order
+    where sao_id = #{saoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sao_sales_order
+    where sao_id = #{saoId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.SaoSalesOrderExample">
+    delete from sao_sales_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ecommerce.pojo.SaoSalesOrder">
+    insert into sao_sales_order (sao_id, created_by, creation_date, 
+      last_update_by, last_update_date, call_cnt, 
+      remark, sts_cd, man_id, 
+      war_id, sync_date, payment_date, 
+      push_date, track_no_date, fulfillment_date, 
+      settlement_date, product_amount, freight_cost, 
+      handling_fee, customer_remark, order_no, 
+      order_sts, refund_sts, delivery_sts, 
+      sto_id, last_freight_cost, cancel_time, 
+      auto_pay_status, auto_pay_time, buyer_checkout_message
+      )
+    values (#{saoId,jdbcType=INTEGER}, #{createdBy,jdbcType=VARCHAR}, #{creationDate,jdbcType=TIMESTAMP}, 
+      #{lastUpdateBy,jdbcType=VARCHAR}, #{lastUpdateDate,jdbcType=TIMESTAMP}, #{callCnt,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{stsCd,jdbcType=CHAR}, #{manId,jdbcType=INTEGER}, 
+      #{warId,jdbcType=INTEGER}, #{syncDate,jdbcType=TIMESTAMP}, #{paymentDate,jdbcType=TIMESTAMP}, 
+      #{pushDate,jdbcType=TIMESTAMP}, #{trackNoDate,jdbcType=TIMESTAMP}, #{fulfillmentDate,jdbcType=TIMESTAMP}, 
+      #{settlementDate,jdbcType=TIMESTAMP}, #{productAmount,jdbcType=DECIMAL}, #{freightCost,jdbcType=DECIMAL}, 
+      #{handlingFee,jdbcType=DECIMAL}, #{customerRemark,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, 
+      #{orderSts,jdbcType=VARCHAR}, #{refundSts,jdbcType=VARCHAR}, #{deliverySts,jdbcType=VARCHAR}, 
+      #{stoId,jdbcType=INTEGER}, #{lastFreightCost,jdbcType=DECIMAL}, #{cancelTime,jdbcType=TIMESTAMP}, 
+      #{autoPayStatus,jdbcType=CHAR}, #{autoPayTime,jdbcType=VARCHAR}, #{buyerCheckoutMessage,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ecommerce.pojo.SaoSalesOrder">
+    insert into sao_sales_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="saoId != null">
+        sao_id,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="callCnt != null">
+        call_cnt,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="stsCd != null">
+        sts_cd,
+      </if>
+      <if test="manId != null">
+        man_id,
+      </if>
+      <if test="warId != null">
+        war_id,
+      </if>
+      <if test="syncDate != null">
+        sync_date,
+      </if>
+      <if test="paymentDate != null">
+        payment_date,
+      </if>
+      <if test="pushDate != null">
+        push_date,
+      </if>
+      <if test="trackNoDate != null">
+        track_no_date,
+      </if>
+      <if test="fulfillmentDate != null">
+        fulfillment_date,
+      </if>
+      <if test="settlementDate != null">
+        settlement_date,
+      </if>
+      <if test="productAmount != null">
+        product_amount,
+      </if>
+      <if test="freightCost != null">
+        freight_cost,
+      </if>
+      <if test="handlingFee != null">
+        handling_fee,
+      </if>
+      <if test="customerRemark != null">
+        customer_remark,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="orderSts != null">
+        order_sts,
+      </if>
+      <if test="refundSts != null">
+        refund_sts,
+      </if>
+      <if test="deliverySts != null">
+        delivery_sts,
+      </if>
+      <if test="stoId != null">
+        sto_id,
+      </if>
+      <if test="lastFreightCost != null">
+        last_freight_cost,
+      </if>
+      <if test="cancelTime != null">
+        cancel_time,
+      </if>
+      <if test="autoPayStatus != null">
+        auto_pay_status,
+      </if>
+      <if test="autoPayTime != null">
+        auto_pay_time,
+      </if>
+      <if test="buyerCheckoutMessage != null">
+        buyer_checkout_message,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="saoId != null">
+        #{saoId,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callCnt != null">
+        #{callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="stsCd != null">
+        #{stsCd,jdbcType=CHAR},
+      </if>
+      <if test="manId != null">
+        #{manId,jdbcType=INTEGER},
+      </if>
+      <if test="warId != null">
+        #{warId,jdbcType=INTEGER},
+      </if>
+      <if test="syncDate != null">
+        #{syncDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentDate != null">
+        #{paymentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pushDate != null">
+        #{pushDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trackNoDate != null">
+        #{trackNoDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fulfillmentDate != null">
+        #{fulfillmentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="settlementDate != null">
+        #{settlementDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productAmount != null">
+        #{productAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="freightCost != null">
+        #{freightCost,jdbcType=DECIMAL},
+      </if>
+      <if test="handlingFee != null">
+        #{handlingFee,jdbcType=DECIMAL},
+      </if>
+      <if test="customerRemark != null">
+        #{customerRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderSts != null">
+        #{orderSts,jdbcType=VARCHAR},
+      </if>
+      <if test="refundSts != null">
+        #{refundSts,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverySts != null">
+        #{deliverySts,jdbcType=VARCHAR},
+      </if>
+      <if test="stoId != null">
+        #{stoId,jdbcType=INTEGER},
+      </if>
+      <if test="lastFreightCost != null">
+        #{lastFreightCost,jdbcType=DECIMAL},
+      </if>
+      <if test="cancelTime != null">
+        #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="autoPayStatus != null">
+        #{autoPayStatus,jdbcType=CHAR},
+      </if>
+      <if test="autoPayTime != null">
+        #{autoPayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerCheckoutMessage != null">
+        #{buyerCheckoutMessage,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ecommerce.pojo.SaoSalesOrderExample" resultType="java.lang.Long">
+    select count(*) from sao_sales_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sao_sales_order
+    <set>
+      <if test="record.saoId != null">
+        sao_id = #{record.saoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdBy != null">
+        created_by = #{record.createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creationDate != null">
+        creation_date = #{record.creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateBy != null">
+        last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdateDate != null">
+        last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.callCnt != null">
+        call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stsCd != null">
+        sts_cd = #{record.stsCd,jdbcType=CHAR},
+      </if>
+      <if test="record.manId != null">
+        man_id = #{record.manId,jdbcType=INTEGER},
+      </if>
+      <if test="record.warId != null">
+        war_id = #{record.warId,jdbcType=INTEGER},
+      </if>
+      <if test="record.syncDate != null">
+        sync_date = #{record.syncDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.paymentDate != null">
+        payment_date = #{record.paymentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pushDate != null">
+        push_date = #{record.pushDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.trackNoDate != null">
+        track_no_date = #{record.trackNoDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fulfillmentDate != null">
+        fulfillment_date = #{record.fulfillmentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.settlementDate != null">
+        settlement_date = #{record.settlementDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.productAmount != null">
+        product_amount = #{record.productAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.freightCost != null">
+        freight_cost = #{record.freightCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.handlingFee != null">
+        handling_fee = #{record.handlingFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.customerRemark != null">
+        customer_remark = #{record.customerRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderNo != null">
+        order_no = #{record.orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderSts != null">
+        order_sts = #{record.orderSts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refundSts != null">
+        refund_sts = #{record.refundSts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deliverySts != null">
+        delivery_sts = #{record.deliverySts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stoId != null">
+        sto_id = #{record.stoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastFreightCost != null">
+        last_freight_cost = #{record.lastFreightCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.cancelTime != null">
+        cancel_time = #{record.cancelTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.autoPayStatus != null">
+        auto_pay_status = #{record.autoPayStatus,jdbcType=CHAR},
+      </if>
+      <if test="record.autoPayTime != null">
+        auto_pay_time = #{record.autoPayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerCheckoutMessage != null">
+        buyer_checkout_message = #{record.buyerCheckoutMessage,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update sao_sales_order
+    set sao_id = #{record.saoId,jdbcType=INTEGER},
+      created_by = #{record.createdBy,jdbcType=VARCHAR},
+      creation_date = #{record.creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      sts_cd = #{record.stsCd,jdbcType=CHAR},
+      man_id = #{record.manId,jdbcType=INTEGER},
+      war_id = #{record.warId,jdbcType=INTEGER},
+      sync_date = #{record.syncDate,jdbcType=TIMESTAMP},
+      payment_date = #{record.paymentDate,jdbcType=TIMESTAMP},
+      push_date = #{record.pushDate,jdbcType=TIMESTAMP},
+      track_no_date = #{record.trackNoDate,jdbcType=TIMESTAMP},
+      fulfillment_date = #{record.fulfillmentDate,jdbcType=TIMESTAMP},
+      settlement_date = #{record.settlementDate,jdbcType=TIMESTAMP},
+      product_amount = #{record.productAmount,jdbcType=DECIMAL},
+      freight_cost = #{record.freightCost,jdbcType=DECIMAL},
+      handling_fee = #{record.handlingFee,jdbcType=DECIMAL},
+      customer_remark = #{record.customerRemark,jdbcType=VARCHAR},
+      order_no = #{record.orderNo,jdbcType=VARCHAR},
+      order_sts = #{record.orderSts,jdbcType=VARCHAR},
+      refund_sts = #{record.refundSts,jdbcType=VARCHAR},
+      delivery_sts = #{record.deliverySts,jdbcType=VARCHAR},
+      sto_id = #{record.stoId,jdbcType=INTEGER},
+      last_freight_cost = #{record.lastFreightCost,jdbcType=DECIMAL},
+      cancel_time = #{record.cancelTime,jdbcType=TIMESTAMP},
+      auto_pay_status = #{record.autoPayStatus,jdbcType=CHAR},
+      auto_pay_time = #{record.autoPayTime,jdbcType=VARCHAR},
+      buyer_checkout_message = #{record.buyerCheckoutMessage,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sao_sales_order
+    set sao_id = #{record.saoId,jdbcType=INTEGER},
+      created_by = #{record.createdBy,jdbcType=VARCHAR},
+      creation_date = #{record.creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{record.lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{record.callCnt,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      sts_cd = #{record.stsCd,jdbcType=CHAR},
+      man_id = #{record.manId,jdbcType=INTEGER},
+      war_id = #{record.warId,jdbcType=INTEGER},
+      sync_date = #{record.syncDate,jdbcType=TIMESTAMP},
+      payment_date = #{record.paymentDate,jdbcType=TIMESTAMP},
+      push_date = #{record.pushDate,jdbcType=TIMESTAMP},
+      track_no_date = #{record.trackNoDate,jdbcType=TIMESTAMP},
+      fulfillment_date = #{record.fulfillmentDate,jdbcType=TIMESTAMP},
+      settlement_date = #{record.settlementDate,jdbcType=TIMESTAMP},
+      product_amount = #{record.productAmount,jdbcType=DECIMAL},
+      freight_cost = #{record.freightCost,jdbcType=DECIMAL},
+      handling_fee = #{record.handlingFee,jdbcType=DECIMAL},
+      customer_remark = #{record.customerRemark,jdbcType=VARCHAR},
+      order_no = #{record.orderNo,jdbcType=VARCHAR},
+      order_sts = #{record.orderSts,jdbcType=VARCHAR},
+      refund_sts = #{record.refundSts,jdbcType=VARCHAR},
+      delivery_sts = #{record.deliverySts,jdbcType=VARCHAR},
+      sto_id = #{record.stoId,jdbcType=INTEGER},
+      last_freight_cost = #{record.lastFreightCost,jdbcType=DECIMAL},
+      cancel_time = #{record.cancelTime,jdbcType=TIMESTAMP},
+      auto_pay_status = #{record.autoPayStatus,jdbcType=CHAR},
+      auto_pay_time = #{record.autoPayTime,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.SaoSalesOrder">
+    update sao_sales_order
+    <set>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callCnt != null">
+        call_cnt = #{callCnt,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="stsCd != null">
+        sts_cd = #{stsCd,jdbcType=CHAR},
+      </if>
+      <if test="manId != null">
+        man_id = #{manId,jdbcType=INTEGER},
+      </if>
+      <if test="warId != null">
+        war_id = #{warId,jdbcType=INTEGER},
+      </if>
+      <if test="syncDate != null">
+        sync_date = #{syncDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentDate != null">
+        payment_date = #{paymentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pushDate != null">
+        push_date = #{pushDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trackNoDate != null">
+        track_no_date = #{trackNoDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fulfillmentDate != null">
+        fulfillment_date = #{fulfillmentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="settlementDate != null">
+        settlement_date = #{settlementDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productAmount != null">
+        product_amount = #{productAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="freightCost != null">
+        freight_cost = #{freightCost,jdbcType=DECIMAL},
+      </if>
+      <if test="handlingFee != null">
+        handling_fee = #{handlingFee,jdbcType=DECIMAL},
+      </if>
+      <if test="customerRemark != null">
+        customer_remark = #{customerRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderSts != null">
+        order_sts = #{orderSts,jdbcType=VARCHAR},
+      </if>
+      <if test="refundSts != null">
+        refund_sts = #{refundSts,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverySts != null">
+        delivery_sts = #{deliverySts,jdbcType=VARCHAR},
+      </if>
+      <if test="stoId != null">
+        sto_id = #{stoId,jdbcType=INTEGER},
+      </if>
+      <if test="lastFreightCost != null">
+        last_freight_cost = #{lastFreightCost,jdbcType=DECIMAL},
+      </if>
+      <if test="cancelTime != null">
+        cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="autoPayStatus != null">
+        auto_pay_status = #{autoPayStatus,jdbcType=CHAR},
+      </if>
+      <if test="autoPayTime != null">
+        auto_pay_time = #{autoPayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerCheckoutMessage != null">
+        buyer_checkout_message = #{buyerCheckoutMessage,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where sao_id = #{saoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ecommerce.pojo.SaoSalesOrder">
+    update sao_sales_order
+    set created_by = #{createdBy,jdbcType=VARCHAR},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{callCnt,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      sts_cd = #{stsCd,jdbcType=CHAR},
+      man_id = #{manId,jdbcType=INTEGER},
+      war_id = #{warId,jdbcType=INTEGER},
+      sync_date = #{syncDate,jdbcType=TIMESTAMP},
+      payment_date = #{paymentDate,jdbcType=TIMESTAMP},
+      push_date = #{pushDate,jdbcType=TIMESTAMP},
+      track_no_date = #{trackNoDate,jdbcType=TIMESTAMP},
+      fulfillment_date = #{fulfillmentDate,jdbcType=TIMESTAMP},
+      settlement_date = #{settlementDate,jdbcType=TIMESTAMP},
+      product_amount = #{productAmount,jdbcType=DECIMAL},
+      freight_cost = #{freightCost,jdbcType=DECIMAL},
+      handling_fee = #{handlingFee,jdbcType=DECIMAL},
+      customer_remark = #{customerRemark,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      order_sts = #{orderSts,jdbcType=VARCHAR},
+      refund_sts = #{refundSts,jdbcType=VARCHAR},
+      delivery_sts = #{deliverySts,jdbcType=VARCHAR},
+      sto_id = #{stoId,jdbcType=INTEGER},
+      last_freight_cost = #{lastFreightCost,jdbcType=DECIMAL},
+      cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
+      auto_pay_status = #{autoPayStatus,jdbcType=CHAR},
+      auto_pay_time = #{autoPayTime,jdbcType=VARCHAR},
+      buyer_checkout_message = #{buyerCheckoutMessage,jdbcType=LONGVARCHAR}
+    where sao_id = #{saoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.SaoSalesOrder">
+    update sao_sales_order
+    set created_by = #{createdBy,jdbcType=VARCHAR},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      call_cnt = #{callCnt,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      sts_cd = #{stsCd,jdbcType=CHAR},
+      man_id = #{manId,jdbcType=INTEGER},
+      war_id = #{warId,jdbcType=INTEGER},
+      sync_date = #{syncDate,jdbcType=TIMESTAMP},
+      payment_date = #{paymentDate,jdbcType=TIMESTAMP},
+      push_date = #{pushDate,jdbcType=TIMESTAMP},
+      track_no_date = #{trackNoDate,jdbcType=TIMESTAMP},
+      fulfillment_date = #{fulfillmentDate,jdbcType=TIMESTAMP},
+      settlement_date = #{settlementDate,jdbcType=TIMESTAMP},
+      product_amount = #{productAmount,jdbcType=DECIMAL},
+      freight_cost = #{freightCost,jdbcType=DECIMAL},
+      handling_fee = #{handlingFee,jdbcType=DECIMAL},
+      customer_remark = #{customerRemark,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      order_sts = #{orderSts,jdbcType=VARCHAR},
+      refund_sts = #{refundSts,jdbcType=VARCHAR},
+      delivery_sts = #{deliverySts,jdbcType=VARCHAR},
+      sto_id = #{stoId,jdbcType=INTEGER},
+      last_freight_cost = #{lastFreightCost,jdbcType=DECIMAL},
+      cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
+      auto_pay_status = #{autoPayStatus,jdbcType=CHAR},
+      auto_pay_time = #{autoPayTime,jdbcType=VARCHAR}
+    where sao_id = #{saoId,jdbcType=INTEGER}
+  </update>
+</mapper>
