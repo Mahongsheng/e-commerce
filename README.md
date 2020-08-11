@@ -142,6 +142,10 @@ npm run build
 
 感谢东北大学软件学院的培养、感谢东软睿道集团的辛勤教导、感谢团队五位同学（张同学、陈同学、年同学、邱同学、马同学）的大力支持！
 
+## 联系我们
+
+如果您需要该项目的需求分析文档、我（马同学）的总结报告等相关文档或者有任何批评指正，您可以通过mahhss@foxmail.com联系我。
+
 ## 许可证
 
 [Apache License 2.0](https://github.com/Mahongsheng/e-commerce/LICENSE)

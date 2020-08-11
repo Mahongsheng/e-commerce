@@ -33,8 +33,8 @@ mybatis:
 aliyun:
   oss:
     endpoint: oss-cn-beijing.aliyuncs.com # oss对外服务的访问域名
-    accessKeyId: LTAI4GEPFYczatnVE49qRUTX # 访问身份验证中用到用户标识
-    accessKeySecret: WlfShTg8D4KQwE24WnhNskpLbJUZhf # 用户用于加密签名字符串和oss用来验证签名字符串的密钥
+    accessKeyId: xxx # 访问身份验证中用到用户标识
+    accessKeySecret: xxx # 用户用于加密签名字符串和oss用来验证签名字符串的密钥
     bucketName: e-commerce-oss # oss的存储空间
     policy:
       expire: 300 # 签名有效期(S)
