@@ -140,7 +140,7 @@ npm run build
 
 ## 特别感谢
 
-感谢东北大学软件学院的培养、感谢东软睿道集团的辛勤教导、感谢团队其他四位同学（[张同学](https://github.com/Yousabla)、[陈同学](https://github.com/MessiahChen)、[年同学]()、[邱同学]()）的大力支持！
+感谢东北大学软件学院的培养、感谢东软睿道集团的辛勤教导、感谢团队其他四位同学（[张同学](https://github.com/Yousabla)、[陈同学](https://github.com/MessiahChen)、[年同学](https://github.com/nian9901)、[邱同学](https://github.com/qiu260028891)）的大力支持！
 
 ## 联系我们
 
