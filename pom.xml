@@ -42,7 +42,7 @@
         <hutool.version>5.3.9</hutool.version>
         <swagger2.version>2.9.2</swagger2.version>
         <mybatis-generator.version>1.4.0</mybatis-generator.version>
-        <mybatis.version>3.4.6</mybatis.version>
+        <mybatis.version>3.5.6</mybatis.version>
         <mybatis-springboot.version>2.1.0</mybatis-springboot.version>
         <mysql-connector.version>8.0.20</mysql-connector.version>
         <spring-data-commons.version>2.3.0.RELEASE</spring-data-commons.version>
