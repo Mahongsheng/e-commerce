@@ -1,5 +1,16 @@
 server:
   port: 8888
+
+eureka:
+  client:
+    serviceUrl:
+      register-with-eureka: true
+      fetch-registry: true
+      defaultZone: http://8.130.29.183:8761/eureka
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+
 spring:
   application:
     name: e-commerce-config-server  # 应用名称
@@ -10,5 +21,5 @@ spring:
           uri: https://github.com/Mahongsheng/e-commerce-config.git #配置文件所在仓库
           default-label: main #配置文件分支
           search-paths: config #配置文件所在根目录
-          username: mahhss@foxmail.com
-          password: mage@1125
+          username: github
+          password: password
