@@ -1,12 +1,22 @@
 server:
   port: 9010
+
+management:
+  endpoint:
+    shutdown:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 spring:
   application:
     name: e-commerce-admin
   datasource:
-    url: jdbc:mysql://101.201.254.128:13306/e_commerce?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
-    username: dongruan
-    password: 123456
+    url: jdbc:mysql://106.13.127.90:3306/e_commerce?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: work
+    password: mydatabase
     type: com.alibaba.druid.pool.DruidDataSource
   redis:
     host: 101.201.254.128 # Redis服务器地址
@@ -20,10 +30,18 @@ spring:
         max-idle: 8 # 连接池中的最大空闲连接
         min-idle: 0 # 连接池中的最小空闲连接
     timeout: 3000ms # 连接超时时间（毫秒）
+  profiles:
+    active: dev
+  cloud:
+    config:
+      uri: http://localhost:8888
+      label: main
+      profile: dev
+
 eureka:
   client:
     service-url:
-      defaultZone: http://39.105.102.179:8888//eureka
+      defaultZone: http://8.130.29.183:8761//eureka
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
@@ -40,6 +58,7 @@ secure:
       - /swagger-ui.html
       - /swagger-resources/**
       - /swagger/**
+      - /autoShow
       - /**/v2/api-docs
       - /**/*.js
       - /**/*.css

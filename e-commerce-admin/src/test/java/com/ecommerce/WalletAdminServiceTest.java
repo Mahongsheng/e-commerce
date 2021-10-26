@@ -5,13 +5,11 @@ import com.ecommerce.service.WalletAdminService;
 import com.ecommerce.vojo.PageVO;
 import com.ecommerce.vojo.WalletAdminVO;
 import com.ecommerce.vojo.WalletAuditVO;
-
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @ProjectName: e-commerce
@@ -22,29 +20,27 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @CreateDate: 2020/7/16 17:33
  */
 @SpringBootTest(classes = {AdminApplication.class})
-@RunWith(SpringRunner.class)
 public class WalletAdminServiceTest {
     @Autowired
     private WalletAdminService walletAdminService;
 
     @Test
-    public void testGetAllFlow(){
+    public void testGetAllFlow() {
         PageVO walletPageVO = new PageVO();
         walletPageVO.setPageNum(1);
         walletPageVO.setPageSize(1);
         CommonPage<WalletAdminVO> walletAdminVOCommonPage = walletAdminService.getAllFlow(walletPageVO);
-
-        Assert.assertEquals("20200706161149345572",walletAdminVOCommonPage.getList().get(0).getTransactionNumber());
+        assertEquals("20200706161149345572", walletAdminVOCommonPage.getList().get(0).getTransactionNumber());
     }
 
     @Test
-    public void testAudit(){
+    public void testAudit() {
         WalletAuditVO walletAuditVO = new WalletAuditVO();
         walletAuditVO.setNote("test_case");
         walletAuditVO.setStatus(true);
         walletAuditVO.setTransactionNumber("12345678901234567890");
         Boolean flag = walletAdminService.audit(walletAuditVO);
-        Assert.assertEquals(true,flag);
+        assertEquals(true, flag);
     }
 }
 //package com.ecommerce;
