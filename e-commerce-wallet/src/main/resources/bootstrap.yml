@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    config:
+      name: e-commerce-wallet
+      profile: dev
+      uri: http://localhost:8888
+      label: main
+  profiles:
+    active: dev
