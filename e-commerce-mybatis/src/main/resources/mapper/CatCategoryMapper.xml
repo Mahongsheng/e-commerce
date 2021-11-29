@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.CatCategoryMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.CatCategory">
+<mapper namespace="com.ecommerce.mybatis.dao.CatCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.CatCategory">
     <id column="cat_id" jdbcType="INTEGER" property="catId" />
     <result column="cat_name" jdbcType="VARCHAR" property="catName" />
     <result column="cat_father_id" jdbcType="INTEGER" property="catFatherId" />
@@ -71,7 +71,7 @@
   <sql id="Base_Column_List">
     cat_id, cat_name, cat_father_id, created_by, creation_date, last_update_by, last_update_date
   </sql>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.CatCategoryExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.CatCategoryExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -95,13 +95,13 @@
     delete from cat_category
     where cat_id = #{catId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.CatCategoryExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.CatCategoryExample">
     delete from cat_category
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.CatCategory">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.CatCategory">
     insert into cat_category (cat_id, cat_name, cat_father_id, 
       created_by, creation_date, last_update_by, 
       last_update_date)
@@ -109,7 +109,7 @@
       #{createdBy,jdbcType=VARCHAR}, #{creationDate,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=VARCHAR}, 
       #{lastUpdateDate,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.CatCategory">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.CatCategory">
     insert into cat_category
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="catId != null">
@@ -158,7 +158,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.CatCategoryExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.CatCategoryExample" resultType="java.lang.Long">
     select count(*) from cat_category
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -206,7 +206,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.CatCategory">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.CatCategory">
     update cat_category
     <set>
       <if test="catName != null">
@@ -230,7 +230,7 @@
     </set>
     where cat_id = #{catId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.CatCategory">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.CatCategory">
     update cat_category
     set cat_name = #{catName,jdbcType=VARCHAR},
       cat_father_id = #{catFatherId,jdbcType=INTEGER},

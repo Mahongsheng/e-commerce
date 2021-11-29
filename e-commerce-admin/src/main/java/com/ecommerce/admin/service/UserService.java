@@ -2,9 +2,9 @@ package com.ecommerce.admin.service;
 
 import com.ecommerce.admin.vojo.*;
 import com.ecommerce.common.base.CommonPage;
-import com.ecommerce.pojo.SysResource;
-import com.ecommerce.pojo.SysRole;
-import com.ecommerce.pojo.SysUser;
+import com.ecommerce.mybatis.pojo.SysResource;
+import com.ecommerce.mybatis.pojo.SysRole;
+import com.ecommerce.mybatis.pojo.SysUser;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;

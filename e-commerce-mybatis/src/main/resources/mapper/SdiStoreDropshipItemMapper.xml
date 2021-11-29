@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.SdiStoreDropshipItemMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.SdiStoreDropshipItem">
+<mapper namespace="com.ecommerce.mybatis.dao.SdiStoreDropshipItemMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.SdiStoreDropshipItem">
     <id column="dil_id" jdbcType="INTEGER" property="dilId" />
     <result column="pro_id" jdbcType="INTEGER" property="proId" />
     <result column="str_id" jdbcType="INTEGER" property="strId" />
@@ -81,7 +81,7 @@
     creation_date, last_update_by, last_update_date, call_cnt, remark, sts_cd, shelf_stock, 
     prefer_date
   </sql>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.SdiStoreDropshipItemExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.SdiStoreDropshipItemExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -105,13 +105,13 @@
     delete from sdi_store_dropship_item
     where dil_id = #{dilId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.SdiStoreDropshipItemExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.SdiStoreDropshipItemExample">
     delete from sdi_store_dropship_item
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.SdiStoreDropshipItem">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.SdiStoreDropshipItem">
     insert into sdi_store_dropship_item (dil_id, pro_id, str_id, 
       store_retention, dropship_price, dropship_status, 
       created_by, creation_date, last_update_by, 
@@ -125,7 +125,7 @@
       #{stsCd,jdbcType=CHAR}, #{shelfStock,jdbcType=INTEGER}, #{preferDate,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.SdiStoreDropshipItem">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.SdiStoreDropshipItem">
     insert into sdi_store_dropship_item
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="dilId != null">
@@ -222,7 +222,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.SdiStoreDropshipItemExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.SdiStoreDropshipItemExample" resultType="java.lang.Long">
     select count(*) from sdi_store_dropship_item
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -302,7 +302,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.SdiStoreDropshipItem">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.SdiStoreDropshipItem">
     update sdi_store_dropship_item
     <set>
       <if test="proId != null">
@@ -350,7 +350,7 @@
     </set>
     where dil_id = #{dilId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.SdiStoreDropshipItem">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.SdiStoreDropshipItem">
     update sdi_store_dropship_item
     set pro_id = #{proId,jdbcType=INTEGER},
       str_id = #{strId,jdbcType=INTEGER},

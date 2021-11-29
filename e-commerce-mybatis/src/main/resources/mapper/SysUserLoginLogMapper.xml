@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.SysUserLoginLogMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.SysUserLoginLog">
+<mapper namespace="com.ecommerce.mybatis.dao.SysUserLoginLogMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.SysUserLoginLog">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="member_id" jdbcType="BIGINT" property="memberId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -71,7 +71,7 @@
   <sql id="Base_Column_List">
     id, member_id, create_time, ip, city, login_type, province
   </sql>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.SysUserLoginLogExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.SysUserLoginLogExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -95,13 +95,13 @@
     delete from sys_user_login_log
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.SysUserLoginLogExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.SysUserLoginLogExample">
     delete from sys_user_login_log
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.SysUserLoginLog">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.SysUserLoginLog">
     insert into sys_user_login_log (id, member_id, create_time, 
       ip, city, login_type, 
       province)
@@ -109,7 +109,7 @@
       #{ip,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{loginType,jdbcType=INTEGER}, 
       #{province,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.SysUserLoginLog">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.SysUserLoginLog">
     insert into sys_user_login_log
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -158,7 +158,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.SysUserLoginLogExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.SysUserLoginLogExample" resultType="java.lang.Long">
     select count(*) from sys_user_login_log
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -206,7 +206,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.SysUserLoginLog">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.SysUserLoginLog">
     update sys_user_login_log
     <set>
       <if test="memberId != null">
@@ -230,7 +230,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.SysUserLoginLog">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.SysUserLoginLog">
     update sys_user_login_log
     set member_id = #{memberId,jdbcType=BIGINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},

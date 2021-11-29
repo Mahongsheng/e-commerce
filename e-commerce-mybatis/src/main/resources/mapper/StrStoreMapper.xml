@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.StrStoreMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.StrStore">
+<mapper namespace="com.ecommerce.mybatis.dao.StrStoreMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.StrStore">
     <id column="str_id" jdbcType="INTEGER" property="strId" />
     <result column="dsr_id" jdbcType="INTEGER" property="dsrId" />
     <result column="platform_type" jdbcType="VARCHAR" property="platformType" />
@@ -77,7 +77,7 @@
     str_id, dsr_id, platform_type, store_name, store_sts_cd, created_by, creation_date, 
     last_update_by, last_update_date, call_cnt, remark, sts_cd
   </sql>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.StrStoreExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.StrStoreExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -101,13 +101,13 @@
     delete from str_store
     where str_id = #{strId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.StrStoreExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.StrStoreExample">
     delete from str_store
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.StrStore">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.StrStore">
     insert into str_store (str_id, dsr_id, platform_type, 
       store_name, store_sts_cd, created_by, 
       creation_date, last_update_by, last_update_date, 
@@ -119,7 +119,7 @@
       #{callCnt,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{stsCd,jdbcType=CHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.StrStore">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.StrStore">
     insert into str_store
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="strId != null">
@@ -198,7 +198,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.StrStoreExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.StrStoreExample" resultType="java.lang.Long">
     select count(*) from str_store
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -266,7 +266,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.StrStore">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.StrStore">
     update str_store
     <set>
       <if test="dsrId != null">
@@ -305,7 +305,7 @@
     </set>
     where str_id = #{strId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.StrStore">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.StrStore">
     update str_store
     set dsr_id = #{dsrId,jdbcType=INTEGER},
       platform_type = #{platformType,jdbcType=VARCHAR},

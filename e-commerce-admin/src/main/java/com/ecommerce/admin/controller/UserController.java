@@ -3,7 +3,7 @@ package com.ecommerce.admin.controller;
 import com.ecommerce.admin.vojo.MenuVO;
 import com.ecommerce.common.base.BaseController;
 import com.ecommerce.common.base.CommonResult;
-import com.ecommerce.pojo.SysUser;
+import com.ecommerce.mybatis.pojo.SysUser;
 import com.ecommerce.admin.service.UserService;
 import com.ecommerce.admin.vojo.UpdatePasswordVO;
 import io.swagger.annotations.Api;

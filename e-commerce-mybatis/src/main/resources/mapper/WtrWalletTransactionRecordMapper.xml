@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.WtrWalletTransactionRecordMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.WtrWalletTransactionRecord">
+<mapper namespace="com.ecommerce.mybatis.dao.WtrWalletTransactionRecordMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.WtrWalletTransactionRecord">
     <id column="transaction_id" jdbcType="INTEGER" property="transactionId" />
     <result column="buyer_id" jdbcType="INTEGER" property="buyerId" />
     <result column="bank_card_id" jdbcType="INTEGER" property="bankCardId" />
@@ -99,7 +99,7 @@
     last_update_time, bank_receipt_url, exchange_rate, transaction_desc, foreign_exchange_fee, 
     withdraw_fee
   </sql>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.WtrWalletTransactionRecordExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.WtrWalletTransactionRecordExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -123,13 +123,13 @@
     delete from wtr_wallet_transaction_record
     where transaction_id = #{transactionId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.WtrWalletTransactionRecordExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.WtrWalletTransactionRecordExample">
     delete from wtr_wallet_transaction_record
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.WtrWalletTransactionRecord">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.WtrWalletTransactionRecord">
     insert into wtr_wallet_transaction_record (transaction_id, buyer_id, bank_card_id, 
       transaction_number, transaction_type, account_name, 
       transaction_money, commission, discount_commission, 
@@ -153,7 +153,7 @@
       #{transactionDesc,jdbcType=VARCHAR}, #{foreignExchangeFee,jdbcType=DECIMAL}, #{withdrawFee,jdbcType=DECIMAL}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.WtrWalletTransactionRecord">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.WtrWalletTransactionRecord">
     insert into wtr_wallet_transaction_record
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="transactionId != null">
@@ -340,7 +340,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.WtrWalletTransactionRecordExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.WtrWalletTransactionRecordExample" resultType="java.lang.Long">
     select count(*) from wtr_wallet_transaction_record
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -480,7 +480,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.WtrWalletTransactionRecord">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.WtrWalletTransactionRecord">
     update wtr_wallet_transaction_record
     <set>
       <if test="buyerId != null">
@@ -573,7 +573,7 @@
     </set>
     where transaction_id = #{transactionId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.WtrWalletTransactionRecord">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.WtrWalletTransactionRecord">
     update wtr_wallet_transaction_record
     set buyer_id = #{buyerId,jdbcType=INTEGER},
       bank_card_id = #{bankCardId,jdbcType=INTEGER},

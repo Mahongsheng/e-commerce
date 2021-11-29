@@ -1,8 +1,8 @@
 package com.ecommerce.wallet.service.impl;
 
-import com.ecommerce.dao.WaaWalletAccountMapper;
-import com.ecommerce.pojo.WaaWalletAccount;
-import com.ecommerce.pojo.WaaWalletAccountExample;
+import com.ecommerce.mybatis.dao.WaaWalletAccountMapper;
+import com.ecommerce.mybatis.pojo.WaaWalletAccount;
+import com.ecommerce.mybatis.pojo.WaaWalletAccountExample;
 import com.ecommerce.redis.service.RedisService;
 import com.ecommerce.wallet.service.WalletService;
 import com.ecommerce.wallet.vojo.WalletAccountVO;

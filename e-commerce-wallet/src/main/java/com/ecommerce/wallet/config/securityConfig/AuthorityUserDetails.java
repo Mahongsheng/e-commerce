@@ -1,7 +1,7 @@
 package com.ecommerce.wallet.config.securityConfig;
 
-import com.ecommerce.pojo.SysResource;
-import com.ecommerce.pojo.SysUser;
+import com.ecommerce.mybatis.pojo.SysResource;
+import com.ecommerce.mybatis.pojo.SysUser;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

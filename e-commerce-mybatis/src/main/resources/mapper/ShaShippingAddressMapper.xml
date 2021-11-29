@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.ShaShippingAddressMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.ShaShippingAddress">
+<mapper namespace="com.ecommerce.mybatis.dao.ShaShippingAddressMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.ShaShippingAddress">
     <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
     <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
     <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
@@ -89,7 +89,7 @@
     city_name, address_line1, address_line2, address_line3, postal_cd, contact_phone_no, 
     email, sto_id, carrier_name
   </sql>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.ShaShippingAddressExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.ShaShippingAddressExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -103,13 +103,13 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.ShaShippingAddressExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.ShaShippingAddressExample">
     delete from sha_shipping_address
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.ShaShippingAddress">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.ShaShippingAddress">
     insert into sha_shipping_address (created_by, creation_date, last_update_by, 
       last_update_date, call_cnt, remark, 
       sts_cd, family_name, given_name, 
@@ -127,7 +127,7 @@
       #{contactPhoneNo,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{stoId,jdbcType=INTEGER}, 
       #{carrierName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.ShaShippingAddress">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.ShaShippingAddress">
     insert into sha_shipping_address
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="createdBy != null">
@@ -266,7 +266,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.ShaShippingAddressExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.ShaShippingAddressExample" resultType="java.lang.Long">
     select count(*) from sha_shipping_address
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

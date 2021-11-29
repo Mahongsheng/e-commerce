@@ -1,9 +1,9 @@
 package com.ecommerce.product.service.impl;
 
-import com.ecommerce.dao.WitWishlistMapper;
-import com.ecommerce.dto.product.wishlist.ProductCatsDTO;
-import com.ecommerce.dto.product.wishlist.ProductWishlistDTO;
-import com.ecommerce.pojo.WitWishlistExample;
+import com.ecommerce.mybatis.dao.WitWishlistMapper;
+import com.ecommerce.mybatis.dto.product.wishlist.ProductCatsDTO;
+import com.ecommerce.mybatis.dto.product.wishlist.ProductWishlistDTO;
+import com.ecommerce.mybatis.pojo.WitWishlistExample;
 import com.ecommerce.product.service.ProductWishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

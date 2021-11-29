@@ -1,6 +1,6 @@
 package com.ecommerce.order.config.securityConfig;
 
-import com.ecommerce.pojo.SysUser;
+import com.ecommerce.mybatis.pojo.SysUser;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;

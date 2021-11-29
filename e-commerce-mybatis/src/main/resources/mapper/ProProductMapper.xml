@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.ProProductMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.ProProduct">
+<mapper namespace="com.ecommerce.mybatis.dao.ProProductMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.ProProduct">
     <id column="pro_id" jdbcType="INTEGER" property="proId" />
     <result column="sku_cd" jdbcType="VARCHAR" property="skuCd" />
     <result column="brd_id" jdbcType="INTEGER" property="brdId" />
@@ -26,7 +26,7 @@
     <result column="stockseting" jdbcType="INTEGER" property="stockseting" />
     <result column="prc_id" jdbcType="INTEGER" property="prcId" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ecommerce.pojo.ProProduct">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ecommerce.mybatis.pojo.ProProduct">
     <result column="warranty" jdbcType="LONGVARCHAR" property="warranty" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -95,7 +95,7 @@
   <sql id="Blob_Column_List">
     warranty
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.ecommerce.pojo.ProProductExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.ecommerce.mybatis.pojo.ProProductExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -111,7 +111,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.ProProductExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.ProProductExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -137,13 +137,13 @@
     delete from pro_product
     where pro_id = #{proId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.ProProductExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.ProProductExample">
     delete from pro_product
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.ProProduct">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.ProProduct">
     <selectKey keyProperty="proId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -164,7 +164,7 @@
       #{keyWords,jdbcType=VARCHAR}, #{timeUnit,jdbcType=VARCHAR}, #{stockseting,jdbcType=INTEGER}, 
       #{prcId,jdbcType=INTEGER}, #{warranty,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.ProProduct">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.ProProduct">
     <selectKey keyProperty="proId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -312,7 +312,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.ProProductExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.ProProductExample" resultType="java.lang.Long">
     select count(*) from pro_product
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -457,7 +457,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.ProProduct">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.ProProduct">
     update pro_product
     <set>
       <if test="skuCd != null">
@@ -532,7 +532,7 @@
     </set>
     where pro_id = #{proId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ecommerce.pojo.ProProduct">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ecommerce.mybatis.pojo.ProProduct">
     update pro_product
     set sku_cd = #{skuCd,jdbcType=VARCHAR},
       brd_id = #{brdId,jdbcType=INTEGER},
@@ -559,7 +559,7 @@
       warranty = #{warranty,jdbcType=LONGVARCHAR}
     where pro_id = #{proId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.ProProduct">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.ProProduct">
     update pro_product
     set sku_cd = #{skuCd,jdbcType=VARCHAR},
       brd_id = #{brdId,jdbcType=INTEGER},
@@ -586,14 +586,14 @@
     where pro_id = #{proId,jdbcType=INTEGER}
   </update>
 
-  <select id="selectProByPrcCat" resultType="com.ecommerce.dto.product.browse.ProductBrowseDTO">
+  <select id="selectProByPrcCat" resultType="com.ecommerce.mybatis.dto.product.browse.ProductBrowseDTO">
     SELECT pro.pro_id proId, pro.title,pro.retail_price retailPrice,pro.mininum_retail_price minRetailPrice, img_image.uri image
     FROM pro_product AS pro, prc_product_category, img_image
     WHERE pro.pro_id = prc_product_category.pro_id and pro.pro_id = img_image.entity_id and prc_product_category.category_id = #{catId,jdbcType=INTEGER} and pro.sts_cd = "d"
     GROUP BY pro.pro_id;
   </select>
 
-  <select id="selectProDetailById" resultType="com.ecommerce.dto.product.browse.ProductDetailDTO">
+  <select id="selectProDetailById" resultType="com.ecommerce.mybatis.dto.product.browse.ProductDetailDTO">
     SELECT pro.pro_id proId, pro.title, pro.mininum_retail_price minRetailPrice, pro.retail_price retailPrice, prc.category_path categoryPath
     FROM pro_product pro, prc_product_category prc
     WHERE pro.pro_id = prc.pro_id AND pro.pro_id = #{proId,jdbcType=INTEGER} GROUP BY pro.pro_id;

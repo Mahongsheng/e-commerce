@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.WtaWalletTransactionAduitMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.WtaWalletTransactionAduit">
+<mapper namespace="com.ecommerce.mybatis.dao.WtaWalletTransactionAduitMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.WtaWalletTransactionAduit">
     <id column="transaction_audit_id" jdbcType="INTEGER" property="transactionAuditId" />
     <result column="buyer_id" jdbcType="INTEGER" property="buyerId" />
     <result column="transaction_id" jdbcType="INTEGER" property="transactionId" />
@@ -84,7 +84,7 @@
     withdrawing_money_after, operate_by, status, create_by, create_time, last_update_by, 
     last_update_time
   </sql>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.WtaWalletTransactionAduitExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.WtaWalletTransactionAduitExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -108,13 +108,13 @@
     delete from wta_wallet_transaction_aduit
     where transaction_audit_id = #{transactionAuditId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.WtaWalletTransactionAduitExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.WtaWalletTransactionAduitExample">
     delete from wta_wallet_transaction_aduit
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.WtaWalletTransactionAduit">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.WtaWalletTransactionAduit">
     insert into wta_wallet_transaction_aduit (transaction_audit_id, buyer_id, transaction_id, 
       available_money_before, depositing_money_before, 
       withdrawing_money_before, operate_money, operate_type, 
@@ -130,7 +130,7 @@
       #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=VARCHAR}, 
       #{lastUpdateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.WtaWalletTransactionAduit">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.WtaWalletTransactionAduit">
     insert into wta_wallet_transaction_aduit
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="transactionAuditId != null">
@@ -239,7 +239,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.WtaWalletTransactionAduitExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.WtaWalletTransactionAduitExample" resultType="java.lang.Long">
     select count(*) from wta_wallet_transaction_aduit
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -327,7 +327,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.WtaWalletTransactionAduit">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.WtaWalletTransactionAduit">
     update wta_wallet_transaction_aduit
     <set>
       <if test="buyerId != null">
@@ -381,7 +381,7 @@
     </set>
     where transaction_audit_id = #{transactionAuditId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.WtaWalletTransactionAduit">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.WtaWalletTransactionAduit">
     update wta_wallet_transaction_aduit
     set buyer_id = #{buyerId,jdbcType=INTEGER},
       transaction_id = #{transactionId,jdbcType=INTEGER},

@@ -1,8 +1,8 @@
 package com.ecommerce.order;
 
 import com.ecommerce.order.service.BvoOrderService;
-import com.ecommerce.pojo.ProProduct;
-import com.ecommerce.pojo.SalSalesOrderLineItem;
+import com.ecommerce.mybatis.pojo.ProProduct;
+import com.ecommerce.mybatis.pojo.SalSalesOrderLineItem;
 import com.ecommerce.order.vo.IntegerArrayVO;
 import com.ecommerce.order.vo.SaoSalesOrderVO;
 import org.junit.Assert;

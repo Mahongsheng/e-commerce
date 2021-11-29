@@ -1,8 +1,8 @@
 package com.ecommerce.order.service.impl;
 
-import com.ecommerce.dao.*;
+import com.ecommerce.mybatis.dao.*;
+import com.ecommerce.mybatis.pojo.*;
 import com.ecommerce.order.service.OrderService;
-import com.ecommerce.pojo.*;
 import com.ecommerce.order.vo.IntegerVO;
 import com.ecommerce.order.vo.SaoSalesOrderVO;
 import com.ecommerce.order.vo.ShippingVO;

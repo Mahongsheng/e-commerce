@@ -1,12 +1,12 @@
 package com.ecommerce.product.service.impl;
 
 import com.ecommerce.common.base.CommonPage;
-import com.ecommerce.dao.CatCategoryMapper;
-import com.ecommerce.dao.ImgImageMapper;
-import com.ecommerce.dao.PrcProductCategoryMapper;
-import com.ecommerce.dao.ProProductMapper;
-import com.ecommerce.dto.product.OssCallbackResult;
-import com.ecommerce.pojo.*;
+import com.ecommerce.mybatis.dao.CatCategoryMapper;
+import com.ecommerce.mybatis.dao.ImgImageMapper;
+import com.ecommerce.mybatis.dao.PrcProductCategoryMapper;
+import com.ecommerce.mybatis.dao.ProProductMapper;
+import com.ecommerce.mybatis.dto.product.OssCallbackResult;
+import com.ecommerce.mybatis.pojo.*;
 import com.ecommerce.product.service.ProductImageService;
 import com.ecommerce.product.vojo.image.*;
 import com.github.pagehelper.Page;

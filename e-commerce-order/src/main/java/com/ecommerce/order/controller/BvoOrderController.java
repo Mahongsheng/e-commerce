@@ -10,7 +10,7 @@ import com.ecommerce.order.vo.IntegerArrayVO;
 import com.ecommerce.order.vo.IntegerVO;
 import com.ecommerce.order.vo.SaoSalesOrderVO;
 import com.ecommerce.order.vo.StringVO;
-import com.ecommerce.pojo.SalSalesOrderLineItem;
+import com.ecommerce.mybatis.pojo.SalSalesOrderLineItem;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;

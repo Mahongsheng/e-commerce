@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.SysUserMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.SysUser">
+<mapper namespace="com.ecommerce.mybatis.dao.SysUserMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.SysUser">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -77,7 +77,7 @@
     id, username, password, icon, email, nick_name, note, create_time, login_time, status, 
     man_id, man_buyer_id
   </sql>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.SysUserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.SysUserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -101,13 +101,13 @@
     delete from sys_user
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.SysUserExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.SysUserExample">
     delete from sys_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.SysUser">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.SysUser">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -120,7 +120,7 @@
       #{createTime,jdbcType=TIMESTAMP}, #{loginTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
       #{manId,jdbcType=INTEGER}, #{manBuyerId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.SysUser">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.SysUser">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -196,7 +196,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.SysUserExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.SysUserExample" resultType="java.lang.Long">
     select count(*) from sys_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -264,7 +264,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.SysUser">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.SysUser">
     update sys_user
     <set>
       <if test="username != null">
@@ -303,7 +303,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.SysUser">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.SysUser">
     update sys_user
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.OfpOfferPriceMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.OfpOfferPrice">
+<mapper namespace="com.ecommerce.mybatis.dao.OfpOfferPriceMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.OfpOfferPrice">
     <id column="ofp_id" jdbcType="INTEGER" property="ofpId" />
     <result column="man_id" jdbcType="INTEGER" property="manId" />
     <result column="effective_start_date" jdbcType="TIMESTAMP" property="effectiveStartDate" />
@@ -82,7 +82,7 @@
     dsr_id, created_by, creation_date, last_update_by, last_update_date, call_cnt, remark, 
     sts_cd, period
   </sql>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.OfpOfferPriceExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.OfpOfferPriceExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -106,13 +106,13 @@
     delete from ofp_offer_price
     where ofp_id = #{ofpId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.OfpOfferPriceExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.OfpOfferPriceExample">
     delete from ofp_offer_price
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.OfpOfferPrice">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.OfpOfferPrice">
     insert into ofp_offer_price (ofp_id, man_id, effective_start_date, 
       effective_end_date, pro_id, price, 
       type_cd, dsr_id, created_by, 
@@ -126,7 +126,7 @@
       #{callCnt,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{stsCd,jdbcType=CHAR}, 
       #{period,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.OfpOfferPrice">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.OfpOfferPrice">
     insert into ofp_offer_price
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="ofpId != null">
@@ -229,7 +229,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.OfpOfferPriceExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.OfpOfferPriceExample" resultType="java.lang.Long">
     select count(*) from ofp_offer_price
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -313,7 +313,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.OfpOfferPrice">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.OfpOfferPrice">
     update ofp_offer_price
     <set>
       <if test="manId != null">
@@ -364,7 +364,7 @@
     </set>
     where ofp_id = #{ofpId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.OfpOfferPrice">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.OfpOfferPrice">
     update ofp_offer_price
     set man_id = #{manId,jdbcType=INTEGER},
       effective_start_date = #{effectiveStartDate,jdbcType=TIMESTAMP},

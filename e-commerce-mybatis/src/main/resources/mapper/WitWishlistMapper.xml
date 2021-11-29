@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.WitWishlistMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.WitWishlist">
+<mapper namespace="com.ecommerce.mybatis.dao.WitWishlistMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.WitWishlist">
     <id column="wit_id" jdbcType="INTEGER" property="witId" />
     <result column="dsr_id" jdbcType="INTEGER" property="dsrId" />
     <result column="pro_id" jdbcType="INTEGER" property="proId" />
@@ -75,7 +75,7 @@
     wit_id, dsr_id, pro_id, created_by, creation_date, last_update_by, last_update_date, 
     call_cnt, remark, sts_cd
   </sql>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.WitWishlistExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.WitWishlistExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -99,13 +99,13 @@
     delete from wit_wishlist
     where wit_id = #{witId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.WitWishlistExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.WitWishlistExample">
     delete from wit_wishlist
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.WitWishlist">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.WitWishlist">
     insert into wit_wishlist (wit_id, dsr_id, pro_id, 
       created_by, creation_date, last_update_by, 
       last_update_date, call_cnt, remark, 
@@ -115,7 +115,7 @@
       #{lastUpdateDate,jdbcType=TIMESTAMP}, #{callCnt,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
       #{stsCd,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.WitWishlist">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.WitWishlist">
     insert into wit_wishlist
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="witId != null">
@@ -182,7 +182,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.WitWishlistExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.WitWishlistExample" resultType="java.lang.Long">
     select count(*) from wit_wishlist
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -242,7 +242,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.WitWishlist">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.WitWishlist">
     update wit_wishlist
     <set>
       <if test="dsrId != null">
@@ -275,7 +275,7 @@
     </set>
     where wit_id = #{witId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.WitWishlist">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.WitWishlist">
     update wit_wishlist
     set dsr_id = #{dsrId,jdbcType=INTEGER},
       pro_id = #{proId,jdbcType=INTEGER},
@@ -296,17 +296,17 @@
       #{proId, jdbcType=INTEGER}
     </foreach>
   </delete>
-  <select id="getWishlistByIdAndCat" resultType="com.ecommerce.dto.product.wishlist.ProductWishlistDTO">
+  <select id="getWishlistByIdAndCat" resultType="com.ecommerce.mybatis.dto.product.wishlist.ProductWishlistDTO">
     SELECT pro.pro_id proId, wit.dsr_id dsrId, img.uri image,pro.title, pro.mininum_retail_price minRetailPrice, pro.retail_price retailPrice
     FROM wit_wishlist wit, pro_product pro, prc_product_category prc, img_image img
     WHERE wit.dsr_id = #{dsrId, jdbcType=INTEGER} AND wit.pro_id = pro.pro_id AND pro.prc_id = prc.prc_id AND prc.category_id = #{catId, jdbcType=INTEGER} AND pro.pro_id = img.entity_id AND img.sts_cd = "1" AND img.seq_no = 1 AND wit.sts_cd = 1;
   </select>
-  <select id="getWishlistByIdNoCat" resultType="com.ecommerce.dto.product.wishlist.ProductWishlistDTO">
+  <select id="getWishlistByIdNoCat" resultType="com.ecommerce.mybatis.dto.product.wishlist.ProductWishlistDTO">
     SELECT pro.pro_id proId, wit.dsr_id dsrId, img.uri image,pro.title, pro.mininum_retail_price minRetailPrice, pro.retail_price retailPrice
     FROM wit_wishlist wit, pro_product pro, prc_product_category prc, img_image img
     WHERE wit.dsr_id = #{dsrId, jdbcType=INTEGER} AND wit.pro_id = pro.pro_id AND pro.prc_id = prc.prc_id AND pro.pro_id = img.entity_id AND img.sts_cd = "1" AND img.seq_no = 1 AND wit.sts_cd = 1;
   </select>
-  <select id="getAllCatFromWishlist" resultType="com.ecommerce.dto.product.wishlist.ProductCatsDTO">
+  <select id="getAllCatFromWishlist" resultType="com.ecommerce.mybatis.dto.product.wishlist.ProductCatsDTO">
     SELECT prc.category_id catId, prc.category_name catName
     FROM wit_wishlist wit, pro_product pro, prc_product_category prc
     WHERE wit.dsr_id = #{dsrId, jdbcType=INTEGER} AND wit.pro_id = pro.pro_id AND pro.prc_id = prc.prc_id AND wit.sts_cd = 1

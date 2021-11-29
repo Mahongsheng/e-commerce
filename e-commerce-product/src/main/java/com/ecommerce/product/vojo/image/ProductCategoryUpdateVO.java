@@ -1,12 +1,10 @@
 package com.ecommerce.product.vojo.image;
 
 import com.ecommerce.common.validationGroup.InsertGroup;
-import com.ecommerce.common.validationGroup.UpdateGroup;
-import com.ecommerce.dto.product.OssCallbackResult;
+import com.ecommerce.mybatis.dto.product.OssCallbackResult;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;

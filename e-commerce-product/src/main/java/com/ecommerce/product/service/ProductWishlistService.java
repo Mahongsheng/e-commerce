@@ -1,7 +1,7 @@
 package com.ecommerce.product.service;
 
-import com.ecommerce.dto.product.wishlist.ProductCatsDTO;
-import com.ecommerce.dto.product.wishlist.ProductWishlistDTO;
+import com.ecommerce.mybatis.dto.product.wishlist.ProductCatsDTO;
+import com.ecommerce.mybatis.dto.product.wishlist.ProductWishlistDTO;
 
 import java.util.List;
 

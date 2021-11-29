@@ -1,10 +1,10 @@
 package com.ecommerce.product.service.impl;
 
 import com.ecommerce.common.base.CommonPage;
-import com.ecommerce.dao.PckPackageInfoMapper;
-import com.ecommerce.dao.PdnProductDescriptionMapper;
-import com.ecommerce.dao.ProProductMapper;
-import com.ecommerce.pojo.*;
+import com.ecommerce.mybatis.dao.PckPackageInfoMapper;
+import com.ecommerce.mybatis.dao.PdnProductDescriptionMapper;
+import com.ecommerce.mybatis.dao.ProProductMapper;
+import com.ecommerce.mybatis.pojo.*;
 import com.ecommerce.product.service.ProductEntryService;
 import com.ecommerce.product.vojo.entry.*;
 import com.github.pagehelper.Page;

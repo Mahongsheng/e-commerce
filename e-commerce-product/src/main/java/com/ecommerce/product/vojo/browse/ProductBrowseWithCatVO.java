@@ -1,6 +1,6 @@
 package com.ecommerce.product.vojo.browse;
 
-import com.ecommerce.dto.product.browse.ProductBrowseDTO;
+import com.ecommerce.mybatis.dto.product.browse.ProductBrowseDTO;
 import lombok.Getter;
 import lombok.Setter;
 

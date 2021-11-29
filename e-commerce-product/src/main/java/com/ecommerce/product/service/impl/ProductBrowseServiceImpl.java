@@ -1,9 +1,9 @@
 package com.ecommerce.product.service.impl;
 
-import com.ecommerce.dao.*;
-import com.ecommerce.dto.product.browse.ProductBrowseDTO;
-import com.ecommerce.dto.product.browse.ProductDetailDTO;
-import com.ecommerce.pojo.*;
+import com.ecommerce.mybatis.dao.*;
+import com.ecommerce.mybatis.pojo.*;
+import com.ecommerce.mybatis.dto.product.browse.ProductBrowseDTO;
+import com.ecommerce.mybatis.dto.product.browse.ProductDetailDTO;
 import com.ecommerce.product.service.ProductBrowseService;
 import com.ecommerce.product.vojo.browse.OperateWishlistVO;
 import com.ecommerce.product.vojo.browse.ProductBrowseWithCatVO;

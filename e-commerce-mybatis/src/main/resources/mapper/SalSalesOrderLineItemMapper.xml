@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.SalSalesOrderLineItemMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.SalSalesOrderLineItem">
+<mapper namespace="com.ecommerce.mybatis.dao.SalSalesOrderLineItemMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.SalSalesOrderLineItem">
     <id column="sal_id" jdbcType="INTEGER" property="salId" />
     <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
     <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
@@ -80,7 +80,7 @@
     sal_id, created_by, creation_date, last_update_by, last_update_date, call_cnt, remark, 
     sts_cd, sao_id, pro_id, qty, price, sol_id, tracking_no, wsp_name
   </sql>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.SalSalesOrderLineItemExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.SalSalesOrderLineItemExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -104,13 +104,13 @@
     delete from sal_sales_order_line_item
     where sal_id = #{salId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.SalSalesOrderLineItemExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.SalSalesOrderLineItemExample">
     delete from sal_sales_order_line_item
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.SalSalesOrderLineItem">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.SalSalesOrderLineItem">
     insert into sal_sales_order_line_item (sal_id, created_by, creation_date, 
       last_update_by, last_update_date, call_cnt, 
       remark, sts_cd, sao_id, 
@@ -124,7 +124,7 @@
       #{solId,jdbcType=INTEGER}, #{trackingNo,jdbcType=VARCHAR}, #{wspName,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.SalSalesOrderLineItem">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.SalSalesOrderLineItem">
     insert into sal_sales_order_line_item
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="salId != null">
@@ -221,7 +221,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.SalSalesOrderLineItemExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.SalSalesOrderLineItemExample" resultType="java.lang.Long">
     select count(*) from sal_sales_order_line_item
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -301,7 +301,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.SalSalesOrderLineItem">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.SalSalesOrderLineItem">
     update sal_sales_order_line_item
     <set>
       <if test="createdBy != null">
@@ -349,7 +349,7 @@
     </set>
     where sal_id = #{salId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.SalSalesOrderLineItem">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.SalSalesOrderLineItem">
     update sal_sales_order_line_item
     set created_by = #{createdBy,jdbcType=VARCHAR},
       creation_date = #{creationDate,jdbcType=TIMESTAMP},

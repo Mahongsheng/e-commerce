@@ -1,8 +1,8 @@
 package com.ecommerce.product.controller;
 
 import com.ecommerce.common.base.CommonResult;
-import com.ecommerce.dto.product.OssCallbackResult;
-import com.ecommerce.dto.product.OssPolicyResult;
+import com.ecommerce.mybatis.dto.product.OssCallbackResult;
+import com.ecommerce.mybatis.dto.product.OssPolicyResult;
 import com.ecommerce.product.util.OssServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.SpvSpecificAttributeValueMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.SpvSpecificAttributeValue">
+<mapper namespace="com.ecommerce.mybatis.dao.SpvSpecificAttributeValueMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.SpvSpecificAttributeValue">
     <id column="spv_id" jdbcType="INTEGER" property="spvId" />
     <result column="spa_id" jdbcType="INTEGER" property="spaId" />
     <result column="name_en" jdbcType="VARCHAR" property="nameEn" />
@@ -76,7 +76,7 @@
     spv_id, spa_id, name_en, name_cn, created_by, creation_date, last_update_by, last_update_date, 
     call_cnt, remark, sts_cd
   </sql>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.SpvSpecificAttributeValueExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.SpvSpecificAttributeValueExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -100,13 +100,13 @@
     delete from spv_specific_attribute_value
     where spv_id = #{spvId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.SpvSpecificAttributeValueExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.SpvSpecificAttributeValueExample">
     delete from spv_specific_attribute_value
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.SpvSpecificAttributeValue">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.SpvSpecificAttributeValue">
     insert into spv_specific_attribute_value (spv_id, spa_id, name_en, 
       name_cn, created_by, creation_date, 
       last_update_by, last_update_date, call_cnt, 
@@ -116,7 +116,7 @@
       #{lastUpdateBy,jdbcType=VARCHAR}, #{lastUpdateDate,jdbcType=TIMESTAMP}, #{callCnt,jdbcType=INTEGER}, 
       #{remark,jdbcType=VARCHAR}, #{stsCd,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.SpvSpecificAttributeValue">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.SpvSpecificAttributeValue">
     insert into spv_specific_attribute_value
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="spvId != null">
@@ -189,7 +189,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.SpvSpecificAttributeValueExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.SpvSpecificAttributeValueExample" resultType="java.lang.Long">
     select count(*) from spv_specific_attribute_value
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -253,7 +253,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.SpvSpecificAttributeValue">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.SpvSpecificAttributeValue">
     update spv_specific_attribute_value
     <set>
       <if test="spaId != null">
@@ -289,7 +289,7 @@
     </set>
     where spv_id = #{spvId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.SpvSpecificAttributeValue">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.SpvSpecificAttributeValue">
     update spv_specific_attribute_value
     set spa_id = #{spaId,jdbcType=INTEGER},
       name_en = #{nameEn,jdbcType=VARCHAR},

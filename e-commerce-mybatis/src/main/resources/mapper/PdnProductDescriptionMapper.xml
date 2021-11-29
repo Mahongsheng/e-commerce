@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.PdnProductDescriptionMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.PdnProductDescription">
+<mapper namespace="com.ecommerce.mybatis.dao.PdnProductDescriptionMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.PdnProductDescription">
     <id column="pdn_id" jdbcType="INTEGER" property="pdnId" />
     <result column="pro_id" jdbcType="INTEGER" property="proId" />
     <result column="type_cd" jdbcType="VARCHAR" property="typeCd" />
@@ -14,7 +14,7 @@
     <result column="sts_cd" jdbcType="CHAR" property="stsCd" />
     <result column="platform_type" jdbcType="CHAR" property="platformType" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ecommerce.pojo.PdnProductDescription">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ecommerce.mybatis.pojo.PdnProductDescription">
     <result column="descrition" jdbcType="LONGVARCHAR" property="descrition" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -82,7 +82,7 @@
   <sql id="Blob_Column_List">
     descrition
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.ecommerce.pojo.PdnProductDescriptionExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.ecommerce.mybatis.pojo.PdnProductDescriptionExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -98,7 +98,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.PdnProductDescriptionExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.PdnProductDescriptionExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -124,13 +124,13 @@
     delete from pdn_product_description
     where pdn_id = #{pdnId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.PdnProductDescriptionExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.PdnProductDescriptionExample">
     delete from pdn_product_description
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.PdnProductDescription">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.PdnProductDescription">
     <selectKey keyProperty="pdnId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -143,7 +143,7 @@
       #{callCnt,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{stsCd,jdbcType=CHAR}, 
       #{platformType,jdbcType=CHAR}, #{descrition,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.PdnProductDescription">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.PdnProductDescription">
     <selectKey keyProperty="pdnId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -219,7 +219,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.PdnProductDescriptionExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.PdnProductDescriptionExample" resultType="java.lang.Long">
     select count(*) from pdn_product_description
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -304,7 +304,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.PdnProductDescription">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.PdnProductDescription">
     update pdn_product_description
     <set>
       <if test="proId != null">
@@ -343,7 +343,7 @@
     </set>
     where pdn_id = #{pdnId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ecommerce.pojo.PdnProductDescription">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ecommerce.mybatis.pojo.PdnProductDescription">
     update pdn_product_description
     set pro_id = #{proId,jdbcType=INTEGER},
       type_cd = #{typeCd,jdbcType=VARCHAR},
@@ -358,7 +358,7 @@
       descrition = #{descrition,jdbcType=LONGVARCHAR}
     where pdn_id = #{pdnId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.PdnProductDescription">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.PdnProductDescription">
     update pdn_product_description
     set pro_id = #{proId,jdbcType=INTEGER},
       type_cd = #{typeCd,jdbcType=VARCHAR},

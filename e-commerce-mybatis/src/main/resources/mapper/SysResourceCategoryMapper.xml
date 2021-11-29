@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.SysResourceCategoryMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.SysResourceCategory">
+<mapper namespace="com.ecommerce.mybatis.dao.SysResourceCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.SysResourceCategory">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -68,7 +68,7 @@
   <sql id="Base_Column_List">
     id, create_time, name, sort
   </sql>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.SysResourceCategoryExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.SysResourceCategoryExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -92,19 +92,19 @@
     delete from sys_resource_category
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.SysResourceCategoryExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.SysResourceCategoryExample">
     delete from sys_resource_category
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.SysResourceCategory">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.SysResourceCategory">
     insert into sys_resource_category (id, create_time, name, 
       sort)
     values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{name,jdbcType=VARCHAR}, 
       #{sort,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.SysResourceCategory">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.SysResourceCategory">
     insert into sys_resource_category
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -135,7 +135,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.SysResourceCategoryExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.SysResourceCategoryExample" resultType="java.lang.Long">
     select count(*) from sys_resource_category
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -171,7 +171,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.SysResourceCategory">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.SysResourceCategory">
     update sys_resource_category
     <set>
       <if test="createTime != null">
@@ -186,7 +186,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.SysResourceCategory">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.SysResourceCategory">
     update sys_resource_category
     set create_time = #{createTime,jdbcType=TIMESTAMP},
       name = #{name,jdbcType=VARCHAR},

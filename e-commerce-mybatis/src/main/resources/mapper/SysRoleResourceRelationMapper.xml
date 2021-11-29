@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.SysRoleResourceRelationMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.SysRoleResourceRelation">
+<mapper namespace="com.ecommerce.mybatis.dao.SysRoleResourceRelationMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.SysRoleResourceRelation">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="role_id" jdbcType="BIGINT" property="roleId" />
     <result column="resource_id" jdbcType="BIGINT" property="resourceId" />
@@ -67,7 +67,7 @@
   <sql id="Base_Column_List">
     id, role_id, resource_id
   </sql>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.SysRoleResourceRelationExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.SysRoleResourceRelationExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -91,19 +91,19 @@
     delete from sys_role_resource_relation
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.SysRoleResourceRelationExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.SysRoleResourceRelationExample">
     delete from sys_role_resource_relation
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.SysRoleResourceRelation">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.SysRoleResourceRelation">
     insert into sys_role_resource_relation (id, role_id, resource_id
       )
     values (#{id,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{resourceId,jdbcType=BIGINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.SysRoleResourceRelation">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.SysRoleResourceRelation">
     insert into sys_role_resource_relation
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -128,7 +128,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.SysRoleResourceRelationExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.SysRoleResourceRelationExample" resultType="java.lang.Long">
     select count(*) from sys_role_resource_relation
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -160,7 +160,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.SysRoleResourceRelation">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.SysRoleResourceRelation">
     update sys_role_resource_relation
     <set>
       <if test="roleId != null">
@@ -172,7 +172,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.SysRoleResourceRelation">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.SysRoleResourceRelation">
     update sys_role_resource_relation
     set role_id = #{roleId,jdbcType=BIGINT},
       resource_id = #{resourceId,jdbcType=BIGINT}

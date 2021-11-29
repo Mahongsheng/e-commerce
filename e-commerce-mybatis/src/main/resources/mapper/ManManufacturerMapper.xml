@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.ManManufacturerMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.ManManufacturer">
+<mapper namespace="com.ecommerce.mybatis.dao.ManManufacturerMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.ManManufacturer">
     <id column="man_id" jdbcType="INTEGER" property="manId" />
     <result column="name_en" jdbcType="VARCHAR" property="nameEn" />
     <result column="name_cn" jdbcType="VARCHAR" property="nameCn" />
@@ -15,7 +15,7 @@
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="sts_cd" jdbcType="CHAR" property="stsCd" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ecommerce.pojo.ManManufacturer">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ecommerce.mybatis.pojo.ManManufacturer">
     <result column="description" jdbcType="LONGVARCHAR" property="description" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -83,7 +83,7 @@
   <sql id="Blob_Column_List">
     description
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.ecommerce.pojo.ManManufacturerExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.ecommerce.mybatis.pojo.ManManufacturerExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -99,7 +99,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.ManManufacturerExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.ManManufacturerExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -125,13 +125,13 @@
     delete from man_manufacturer
     where man_id = #{manId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.ManManufacturerExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.ManManufacturerExample">
     delete from man_manufacturer
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.ManManufacturer">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.ManManufacturer">
     <selectKey keyProperty="manId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -146,7 +146,7 @@
       #{remark,jdbcType=VARCHAR}, #{stsCd,jdbcType=CHAR}, #{description,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.ManManufacturer">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.ManManufacturer">
     <selectKey keyProperty="manId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -228,7 +228,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.ManManufacturerExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.ManManufacturerExample" resultType="java.lang.Long">
     select count(*) from man_manufacturer
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -318,7 +318,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.ManManufacturer">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.ManManufacturer">
     update man_manufacturer
     <set>
       <if test="nameEn != null">
@@ -360,7 +360,7 @@
     </set>
     where man_id = #{manId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ecommerce.pojo.ManManufacturer">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ecommerce.mybatis.pojo.ManManufacturer">
     update man_manufacturer
     set name_en = #{nameEn,jdbcType=VARCHAR},
       name_cn = #{nameCn,jdbcType=VARCHAR},
@@ -376,7 +376,7 @@
       description = #{description,jdbcType=LONGVARCHAR}
     where man_id = #{manId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.ManManufacturer">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.ManManufacturer">
     update man_manufacturer
     set name_en = #{nameEn,jdbcType=VARCHAR},
       name_cn = #{nameCn,jdbcType=VARCHAR},

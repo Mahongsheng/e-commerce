@@ -1,9 +1,9 @@
 package com.ecommerce.wallet.config.securityConfig;
 
-import com.ecommerce.dao.SysResourceMapper;
-import com.ecommerce.dao.SysRoleResourceRelationMapper;
-import com.ecommerce.dao.SysUserMapper;
-import com.ecommerce.pojo.*;
+import com.ecommerce.mybatis.dao.SysResourceMapper;
+import com.ecommerce.mybatis.dao.SysRoleResourceRelationMapper;
+import com.ecommerce.mybatis.dao.SysUserMapper;
+import com.ecommerce.mybatis.pojo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

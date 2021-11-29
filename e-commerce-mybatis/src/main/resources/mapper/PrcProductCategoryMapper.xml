@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.PrcProductCategoryMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.PrcProductCategory">
+<mapper namespace="com.ecommerce.mybatis.dao.PrcProductCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.PrcProductCategory">
     <id column="prc_id" jdbcType="INTEGER" property="prcId" />
     <result column="pro_id" jdbcType="INTEGER" property="proId" />
     <result column="category_id" jdbcType="INTEGER" property="categoryId" />
@@ -78,7 +78,7 @@
     prc_id, pro_id, category_id, category_name, category_path, created_by, creation_date, 
     last_update_by, last_update_date, call_int, remark, sts_cd, platform_type
   </sql>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.PrcProductCategoryExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.PrcProductCategoryExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -102,13 +102,13 @@
     delete from prc_product_category
     where prc_id = #{prcId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.PrcProductCategoryExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.PrcProductCategoryExample">
     delete from prc_product_category
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.PrcProductCategory">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.PrcProductCategory">
     <selectKey keyProperty="prcId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -123,7 +123,7 @@
       #{remark,jdbcType=VARCHAR}, #{stsCd,jdbcType=CHAR}, #{platformType,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.PrcProductCategory">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.PrcProductCategory">
     <selectKey keyProperty="prcId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -205,7 +205,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.PrcProductCategoryExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.PrcProductCategoryExample" resultType="java.lang.Long">
     select count(*) from prc_product_category
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -277,7 +277,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.PrcProductCategory">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.PrcProductCategory">
     update prc_product_category
     <set>
       <if test="proId != null">
@@ -319,7 +319,7 @@
     </set>
     where prc_id = #{prcId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.PrcProductCategory">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.PrcProductCategory">
     update prc_product_category
     set pro_id = #{proId,jdbcType=INTEGER},
       category_id = #{categoryId,jdbcType=INTEGER},

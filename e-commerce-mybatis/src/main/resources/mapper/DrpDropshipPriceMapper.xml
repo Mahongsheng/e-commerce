@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.DrpDropshipPriceMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.DrpDropshipPrice">
+<mapper namespace="com.ecommerce.mybatis.dao.DrpDropshipPriceMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.DrpDropshipPrice">
     <id column="drp_id" jdbcType="INTEGER" property="drpId" />
     <result column="ofp_id" jdbcType="INTEGER" property="ofpId" />
     <result column="dsr_id" jdbcType="INTEGER" property="dsrId" />
@@ -76,7 +76,7 @@
     drp_id, ofp_id, dsr_id, war_id, created_by, creation_date, last_update_by, last_update_date, 
     call_cnt, remark, sts_cd
   </sql>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.DrpDropshipPriceExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.DrpDropshipPriceExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -100,13 +100,13 @@
     delete from drp_dropship_price
     where drp_id = #{drpId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.DrpDropshipPriceExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.DrpDropshipPriceExample">
     delete from drp_dropship_price
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.DrpDropshipPrice">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.DrpDropshipPrice">
     insert into drp_dropship_price (drp_id, ofp_id, dsr_id, 
       war_id, created_by, creation_date, 
       last_update_by, last_update_date, call_cnt, 
@@ -116,7 +116,7 @@
       #{lastUpdateBy,jdbcType=VARCHAR}, #{lastUpdateDate,jdbcType=TIMESTAMP}, #{callCnt,jdbcType=INTEGER}, 
       #{remark,jdbcType=VARCHAR}, #{stsCd,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.DrpDropshipPrice">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.DrpDropshipPrice">
     insert into drp_dropship_price
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="drpId != null">
@@ -189,7 +189,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.DrpDropshipPriceExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.DrpDropshipPriceExample" resultType="java.lang.Long">
     select count(*) from drp_dropship_price
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -253,7 +253,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.DrpDropshipPrice">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.DrpDropshipPrice">
     update drp_dropship_price
     <set>
       <if test="ofpId != null">
@@ -289,7 +289,7 @@
     </set>
     where drp_id = #{drpId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.DrpDropshipPrice">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.DrpDropshipPrice">
     update drp_dropship_price
     set ofp_id = #{ofpId,jdbcType=INTEGER},
       dsr_id = #{dsrId,jdbcType=INTEGER},

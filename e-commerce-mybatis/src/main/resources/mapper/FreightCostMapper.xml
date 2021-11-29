@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.FreightCostMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.FreightCost">
+<mapper namespace="com.ecommerce.mybatis.dao.FreightCostMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.FreightCost">
     <id column="province_code" jdbcType="VARCHAR" property="provinceCode" />
     <result column="province_name" jdbcType="VARCHAR" property="provinceName" />
     <result column="shipping_fee" jdbcType="DOUBLE" property="shippingFee" />
@@ -67,7 +67,7 @@
   <sql id="Base_Column_List">
     province_code, province_name, shipping_fee
   </sql>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.FreightCostExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.FreightCostExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -91,19 +91,19 @@
     delete from freight_cost
     where province_code = #{provinceCode,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.FreightCostExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.FreightCostExample">
     delete from freight_cost
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.FreightCost">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.FreightCost">
     insert into freight_cost (province_code, province_name, shipping_fee
       )
     values (#{provinceCode,jdbcType=VARCHAR}, #{provinceName,jdbcType=VARCHAR}, #{shippingFee,jdbcType=DOUBLE}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.FreightCost">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.FreightCost">
     insert into freight_cost
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="provinceCode != null">
@@ -128,7 +128,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.FreightCostExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.FreightCostExample" resultType="java.lang.Long">
     select count(*) from freight_cost
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -160,7 +160,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.FreightCost">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.FreightCost">
     update freight_cost
     <set>
       <if test="provinceName != null">
@@ -172,7 +172,7 @@
     </set>
     where province_code = #{provinceCode,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.FreightCost">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.FreightCost">
     update freight_cost
     set province_name = #{provinceName,jdbcType=VARCHAR},
       shipping_fee = #{shippingFee,jdbcType=DOUBLE}

@@ -10,7 +10,7 @@ import com.ecommerce.common.base.CommonResult;
 import com.ecommerce.common.exception.BusinessException;
 import com.ecommerce.common.validationGroup.InsertGroup;
 import com.ecommerce.common.validationGroup.SelectGroup;
-import com.ecommerce.pojo.SysUser;
+import com.ecommerce.mybatis.pojo.SysUser;
 import com.ecommerce.security.component.DynamicSecurityMetadataSource;
 import com.ecommerce.redis.service.RedisService;
 import com.ecommerce.admin.service.UserService;

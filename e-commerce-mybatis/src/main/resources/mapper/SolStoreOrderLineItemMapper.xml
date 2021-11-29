@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.SolStoreOrderLineItemMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.SolStoreOrderLineItem">
+<mapper namespace="com.ecommerce.mybatis.dao.SolStoreOrderLineItemMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.SolStoreOrderLineItem">
     <id column="sol_id" jdbcType="INTEGER" property="solId" />
     <result column="order_item_id" jdbcType="VARCHAR" property="orderItemId" />
     <result column="sto_id" jdbcType="INTEGER" property="stoId" />
@@ -16,7 +16,7 @@
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="sts_cd" jdbcType="CHAR" property="stsCd" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ecommerce.pojo.SolStoreOrderLineItem">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ecommerce.mybatis.pojo.SolStoreOrderLineItem">
     <result column="buyer_checkout_message" jdbcType="LONGVARCHAR" property="buyerCheckoutMessage" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -84,7 +84,7 @@
   <sql id="Blob_Column_List">
     buyer_checkout_message
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.ecommerce.pojo.SolStoreOrderLineItemExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.ecommerce.mybatis.pojo.SolStoreOrderLineItemExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -100,7 +100,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.SolStoreOrderLineItemExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.SolStoreOrderLineItemExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -126,13 +126,13 @@
     delete from sol_store_order_line_item
     where sol_id = #{solId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.SolStoreOrderLineItemExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.SolStoreOrderLineItemExample">
     delete from sol_store_order_line_item
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.SolStoreOrderLineItem">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.SolStoreOrderLineItem">
     insert into sol_store_order_line_item (sol_id, order_item_id, sto_id, 
       sales_price, qty, sku_no, 
       created_by, creation_date, last_update_by, 
@@ -144,7 +144,7 @@
       #{lastUpdateDate,jdbcType=TIMESTAMP}, #{callCnt,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
       #{stsCd,jdbcType=CHAR}, #{buyerCheckoutMessage,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.SolStoreOrderLineItem">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.SolStoreOrderLineItem">
     insert into sol_store_order_line_item
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="solId != null">
@@ -235,7 +235,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.SolStoreOrderLineItemExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.SolStoreOrderLineItemExample" resultType="java.lang.Long">
     select count(*) from sol_store_order_line_item
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -330,7 +330,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.SolStoreOrderLineItem">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.SolStoreOrderLineItem">
     update sol_store_order_line_item
     <set>
       <if test="orderItemId != null">
@@ -375,7 +375,7 @@
     </set>
     where sol_id = #{solId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ecommerce.pojo.SolStoreOrderLineItem">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ecommerce.mybatis.pojo.SolStoreOrderLineItem">
     update sol_store_order_line_item
     set order_item_id = #{orderItemId,jdbcType=VARCHAR},
       sto_id = #{stoId,jdbcType=INTEGER},
@@ -392,7 +392,7 @@
       buyer_checkout_message = #{buyerCheckoutMessage,jdbcType=LONGVARCHAR}
     where sol_id = #{solId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.SolStoreOrderLineItem">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.SolStoreOrderLineItem">
     update sol_store_order_line_item
     set order_item_id = #{orderItemId,jdbcType=VARCHAR},
       sto_id = #{stoId,jdbcType=INTEGER},

@@ -5,8 +5,8 @@ import com.ecommerce.basicInfo.vojo.company.CompanyEntryVO;
 import com.ecommerce.basicInfo.vojo.company.CompanyInfoUpdateVO;
 import com.ecommerce.basicInfo.vojo.company.CompanyInitVO;
 import com.ecommerce.basicInfo.vojo.company.GetCompanyVO;
-import com.ecommerce.dao.ManManufacturerMapper;
-import com.ecommerce.pojo.ManManufacturer;
+import com.ecommerce.mybatis.dao.ManManufacturerMapper;
+import com.ecommerce.mybatis.pojo.ManManufacturer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

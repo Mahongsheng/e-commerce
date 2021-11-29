@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.SysUserRoleRelationMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.SysUserRoleRelation">
+<mapper namespace="com.ecommerce.mybatis.dao.SysUserRoleRelationMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.SysUserRoleRelation">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="admin_id" jdbcType="BIGINT" property="adminId" />
     <result column="role_id" jdbcType="BIGINT" property="roleId" />
@@ -67,7 +67,7 @@
   <sql id="Base_Column_List">
     id, admin_id, role_id
   </sql>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.SysUserRoleRelationExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.SysUserRoleRelationExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -91,19 +91,19 @@
     delete from sys_user_role_relation
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.SysUserRoleRelationExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.SysUserRoleRelationExample">
     delete from sys_user_role_relation
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.SysUserRoleRelation">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.SysUserRoleRelation">
     insert into sys_user_role_relation (id, admin_id, role_id
       )
     values (#{id,jdbcType=BIGINT}, #{adminId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.SysUserRoleRelation">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.SysUserRoleRelation">
     insert into sys_user_role_relation
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -128,7 +128,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.SysUserRoleRelationExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.SysUserRoleRelationExample" resultType="java.lang.Long">
     select count(*) from sys_user_role_relation
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -160,7 +160,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.SysUserRoleRelation">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.SysUserRoleRelation">
     update sys_user_role_relation
     <set>
       <if test="adminId != null">
@@ -172,7 +172,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.SysUserRoleRelation">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.SysUserRoleRelation">
     update sys_user_role_relation
     set admin_id = #{adminId,jdbcType=BIGINT},
       role_id = #{roleId,jdbcType=BIGINT}

@@ -5,9 +5,9 @@ import com.ecommerce.basicInfo.vojo.bvoinfo.BVOEntryVO;
 import com.ecommerce.basicInfo.vojo.bvoinfo.BVOInfoInitVO;
 import com.ecommerce.basicInfo.vojo.bvoinfo.BVOInfoUpdateVO;
 import com.ecommerce.basicInfo.vojo.bvoinfo.GetBVOVO;
-import com.ecommerce.dao.DsrDropshipperMapper;
-import com.ecommerce.pojo.DsrDropshipper;
-import com.ecommerce.pojo.DsrDropshipperExample;
+import com.ecommerce.mybatis.dao.DsrDropshipperMapper;
+import com.ecommerce.mybatis.pojo.DsrDropshipper;
+import com.ecommerce.mybatis.pojo.DsrDropshipperExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

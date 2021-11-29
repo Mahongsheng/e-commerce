@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.SaoSalesOrderMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.SaoSalesOrder">
+<mapper namespace="com.ecommerce.mybatis.dao.SaoSalesOrderMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.SaoSalesOrder">
     <id column="sao_id" jdbcType="INTEGER" property="saoId" />
     <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
     <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
@@ -32,7 +32,7 @@
     <result column="auto_pay_status" jdbcType="CHAR" property="autoPayStatus" />
     <result column="auto_pay_time" jdbcType="VARCHAR" property="autoPayTime" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ecommerce.pojo.SaoSalesOrder">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ecommerce.mybatis.pojo.SaoSalesOrder">
     <result column="buyer_checkout_message" jdbcType="LONGVARCHAR" property="buyerCheckoutMessage" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -103,7 +103,7 @@
   <sql id="Blob_Column_List">
     buyer_checkout_message
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.ecommerce.pojo.SaoSalesOrderExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.ecommerce.mybatis.pojo.SaoSalesOrderExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -119,7 +119,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.SaoSalesOrderExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.SaoSalesOrderExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -145,13 +145,13 @@
     delete from sao_sales_order
     where sao_id = #{saoId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.SaoSalesOrderExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.SaoSalesOrderExample">
     delete from sao_sales_order
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.SaoSalesOrder">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.SaoSalesOrder">
     insert into sao_sales_order (sao_id, created_by, creation_date, 
       last_update_by, last_update_date, call_cnt, 
       remark, sts_cd, man_id, 
@@ -175,7 +175,7 @@
       #{autoPayStatus,jdbcType=CHAR}, #{autoPayTime,jdbcType=VARCHAR}, #{buyerCheckoutMessage,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.SaoSalesOrder">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.SaoSalesOrder">
     insert into sao_sales_order
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="saoId != null">
@@ -362,7 +362,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.SaoSalesOrderExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.SaoSalesOrderExample" resultType="java.lang.Long">
     select count(*) from sao_sales_order
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -537,7 +537,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.SaoSalesOrder">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.SaoSalesOrder">
     update sao_sales_order
     <set>
       <if test="createdBy != null">
@@ -630,7 +630,7 @@
     </set>
     where sao_id = #{saoId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ecommerce.pojo.SaoSalesOrder">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ecommerce.mybatis.pojo.SaoSalesOrder">
     update sao_sales_order
     set created_by = #{createdBy,jdbcType=VARCHAR},
       creation_date = #{creationDate,jdbcType=TIMESTAMP},
@@ -663,7 +663,7 @@
       buyer_checkout_message = #{buyerCheckoutMessage,jdbcType=LONGVARCHAR}
     where sao_id = #{saoId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.SaoSalesOrder">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.SaoSalesOrder">
     update sao_sales_order
     set created_by = #{createdBy,jdbcType=VARCHAR},
       creation_date = #{creationDate,jdbcType=TIMESTAMP},

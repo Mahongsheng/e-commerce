@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.WaaWalletAccountMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.WaaWalletAccount">
+<mapper namespace="com.ecommerce.mybatis.dao.WaaWalletAccountMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.WaaWalletAccount">
     <id column="buyer_id" jdbcType="INTEGER" property="buyerId" />
     <result column="account_name" jdbcType="VARCHAR" property="accountName" />
     <result column="email" jdbcType="VARCHAR" property="email" />
@@ -81,7 +81,7 @@
     status, create_by, create_time, last_update_by, last_update_time, account_type, auto_pay_status, 
     currency
   </sql>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.WaaWalletAccountExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.WaaWalletAccountExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -105,13 +105,13 @@
     delete from waa_wallet_account
     where buyer_id = #{buyerId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.WaaWalletAccountExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.WaaWalletAccountExample">
     delete from waa_wallet_account
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.WaaWalletAccount">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.WaaWalletAccount">
     insert into waa_wallet_account (buyer_id, account_name, email, 
       password, available_money, depositing_money, 
       withdrawing_money, status, create_by, 
@@ -125,7 +125,7 @@
       #{accountType,jdbcType=INTEGER}, #{autoPayStatus,jdbcType=VARCHAR}, #{currency,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.WaaWalletAccount">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.WaaWalletAccount">
     insert into waa_wallet_account
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="buyerId != null">
@@ -222,7 +222,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.WaaWalletAccountExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.WaaWalletAccountExample" resultType="java.lang.Long">
     select count(*) from waa_wallet_account
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -302,7 +302,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.WaaWalletAccount">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.WaaWalletAccount">
     update waa_wallet_account
     <set>
       <if test="accountName != null">
@@ -350,7 +350,7 @@
     </set>
     where buyer_id = #{buyerId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.WaaWalletAccount">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.WaaWalletAccount">
     update waa_wallet_account
     set account_name = #{accountName,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},

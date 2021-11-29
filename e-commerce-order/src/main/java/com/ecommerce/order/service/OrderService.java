@@ -1,9 +1,10 @@
 package com.ecommerce.order.service;
 
-import com.ecommerce.pojo.*;
 import com.ecommerce.order.vo.IntegerVO;
 import com.ecommerce.order.vo.SaoSalesOrderVO;
 import com.ecommerce.order.vo.ShippingVO;
+import com.ecommerce.mybatis.pojo.ProProduct;
+import com.ecommerce.mybatis.pojo.SalSalesOrderLineItem;
 
 import java.util.List;
 

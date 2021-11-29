@@ -1,11 +1,11 @@
 package com.ecommerce.wallet.service.impl;
 
-import com.ecommerce.dao.WaaWalletAccountMapper;
-import com.ecommerce.dao.WtrWalletTransactionRecordMapper;
-import com.ecommerce.pojo.WaaWalletAccount;
-import com.ecommerce.pojo.WaaWalletAccountExample;
-import com.ecommerce.pojo.WtrWalletTransactionRecord;
-import com.ecommerce.pojo.WtrWalletTransactionRecordExample;
+import com.ecommerce.mybatis.dao.WaaWalletAccountMapper;
+import com.ecommerce.mybatis.dao.WtrWalletTransactionRecordMapper;
+import com.ecommerce.mybatis.pojo.WaaWalletAccount;
+import com.ecommerce.mybatis.pojo.WaaWalletAccountExample;
+import com.ecommerce.mybatis.pojo.WtrWalletTransactionRecord;
+import com.ecommerce.mybatis.pojo.WtrWalletTransactionRecordExample;
 import com.ecommerce.wallet.service.WalletFlowService;
 import com.ecommerce.wallet.vojo.WalletFlowRecordVO;
 import com.ecommerce.wallet.vojo.WalletFlowVO;

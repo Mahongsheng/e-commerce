@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.PckPackageInfoMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.PckPackageInfo">
+<mapper namespace="com.ecommerce.mybatis.dao.PckPackageInfoMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.PckPackageInfo">
     <id column="pck_id" jdbcType="INTEGER" property="pckId" />
     <result column="war_id" jdbcType="INTEGER" property="warId" />
     <result column="pro_id" jdbcType="INTEGER" property="proId" />
@@ -82,7 +82,7 @@
     pck_id, war_id, pro_id, type_cd, width, height, length, weight, created_by, creation_date, 
     last_update_by, last_updete_date, call_cnt, remark, sts_cd, heavy_cargo, logistics_company
   </sql>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.PckPackageInfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.PckPackageInfoExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -106,13 +106,13 @@
     delete from pck_package_info
     where pck_id = #{pckId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.PckPackageInfoExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.PckPackageInfoExample">
     delete from pck_package_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.PckPackageInfo">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.PckPackageInfo">
     insert into pck_package_info (pck_id, war_id, pro_id, 
       type_cd, width, height, 
       length, weight, created_by, 
@@ -126,7 +126,7 @@
       #{callCnt,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{stsCd,jdbcType=CHAR}, 
       #{heavyCargo,jdbcType=VARCHAR}, #{logisticsCompany,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.PckPackageInfo">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.PckPackageInfo">
     insert into pck_package_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="pckId != null">
@@ -235,7 +235,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.PckPackageInfoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.PckPackageInfoExample" resultType="java.lang.Long">
     select count(*) from pck_package_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -323,7 +323,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.PckPackageInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.PckPackageInfo">
     update pck_package_info
     <set>
       <if test="warId != null">
@@ -377,7 +377,7 @@
     </set>
     where pck_id = #{pckId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.PckPackageInfo">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.PckPackageInfo">
     update pck_package_info
     set war_id = #{warId,jdbcType=INTEGER},
       pro_id = #{proId,jdbcType=INTEGER},

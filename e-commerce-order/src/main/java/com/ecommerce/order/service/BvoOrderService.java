@@ -1,6 +1,6 @@
 package com.ecommerce.order.service;
 
-import com.ecommerce.pojo.*;
+import com.ecommerce.mybatis.pojo.*;
 import com.ecommerce.order.vo.IntegerArrayVO;
 import com.ecommerce.order.vo.SaoSalesOrderVO;
 

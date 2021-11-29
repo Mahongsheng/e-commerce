@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.CdmCodeMasterMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.CdmCodeMaster">
+<mapper namespace="com.ecommerce.mybatis.dao.CdmCodeMasterMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.CdmCodeMaster">
     <id column="cdm_id" jdbcType="INTEGER" property="cdmId" />
     <result column="code_type" jdbcType="VARCHAR" property="codeType" />
     <result column="description" jdbcType="VARCHAR" property="description" />
@@ -78,7 +78,7 @@
     cdm_id, code_type, description, type_cd, code_val, seq_no, created_by, creation_date, 
     last_update_by, last_update_date, call_cnt, remark, sts_cd
   </sql>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.CdmCodeMasterExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.CdmCodeMasterExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -102,13 +102,13 @@
     delete from cdm_code_master
     where cdm_id = #{cdmId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.CdmCodeMasterExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.CdmCodeMasterExample">
     delete from cdm_code_master
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.CdmCodeMaster">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.CdmCodeMaster">
     insert into cdm_code_master (cdm_id, code_type, description, 
       type_cd, code_val, seq_no, 
       created_by, creation_date, last_update_by, 
@@ -120,7 +120,7 @@
       #{lastUpdateDate,jdbcType=TIMESTAMP}, #{callCnt,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
       #{stsCd,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.CdmCodeMaster">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.CdmCodeMaster">
     insert into cdm_code_master
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="cdmId != null">
@@ -205,7 +205,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.CdmCodeMasterExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.CdmCodeMasterExample" resultType="java.lang.Long">
     select count(*) from cdm_code_master
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -277,7 +277,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.CdmCodeMaster">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.CdmCodeMaster">
     update cdm_code_master
     <set>
       <if test="codeType != null">
@@ -319,7 +319,7 @@
     </set>
     where cdm_id = #{cdmId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.CdmCodeMaster">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.CdmCodeMaster">
     update cdm_code_master
     set code_type = #{codeType,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},

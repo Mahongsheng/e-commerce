@@ -1,8 +1,8 @@
 package com.ecommerce.wallet.config.securityConfig;
 
-import com.ecommerce.dao.SysResourceMapper;
-import com.ecommerce.pojo.SysResource;
-import com.ecommerce.pojo.SysResourceExample;
+import com.ecommerce.mybatis.dao.SysResourceMapper;
+import com.ecommerce.mybatis.pojo.SysResource;
+import com.ecommerce.mybatis.pojo.SysResourceExample;
 import com.ecommerce.security.component.DynamicSecurityService;
 import com.ecommerce.security.config.SecurityConfig;
 import org.springframework.context.annotation.Bean;

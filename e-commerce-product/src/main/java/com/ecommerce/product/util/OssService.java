@@ -1,8 +1,8 @@
 package com.ecommerce.product.util;
 
 
-import com.ecommerce.dto.product.OssCallbackResult;
-import com.ecommerce.dto.product.OssPolicyResult;
+import com.ecommerce.mybatis.dto.product.OssCallbackResult;
+import com.ecommerce.mybatis.dto.product.OssPolicyResult;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;

@@ -2,7 +2,7 @@ package com.ecommerce.basicInfo.service;
 
 import com.ecommerce.basicInfo.vojo.store.*;
 import com.ecommerce.common.base.CommonPage;
-import com.ecommerce.pojo.StrStore;
+import com.ecommerce.mybatis.pojo.StrStore;
 
 import java.util.List;
 

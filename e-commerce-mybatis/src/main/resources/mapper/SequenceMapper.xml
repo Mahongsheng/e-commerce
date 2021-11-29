@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.SequenceMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.Sequence">
+<mapper namespace="com.ecommerce.mybatis.dao.SequenceMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.Sequence">
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="current_value" jdbcType="INTEGER" property="currentValue" />
     <result column="increment" jdbcType="INTEGER" property="increment" />
@@ -68,7 +68,7 @@
   <sql id="Base_Column_List">
     name, current_value, increment, initial
   </sql>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.SequenceExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.SequenceExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -82,19 +82,19 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.SequenceExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.SequenceExample">
     delete from sequence
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.Sequence">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.Sequence">
     insert into sequence (name, current_value, increment, 
       initial)
     values (#{name,jdbcType=VARCHAR}, #{currentValue,jdbcType=INTEGER}, #{increment,jdbcType=INTEGER}, 
       #{initial,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.Sequence">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.Sequence">
     insert into sequence
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="name != null">
@@ -125,7 +125,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.SequenceExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.SequenceExample" resultType="java.lang.Long">
     select count(*) from sequence
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

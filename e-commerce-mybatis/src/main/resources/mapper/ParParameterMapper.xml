@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ecommerce.dao.ParParameterMapper">
-  <resultMap id="BaseResultMap" type="com.ecommerce.pojo.ParParameter">
+<mapper namespace="com.ecommerce.mybatis.dao.ParParameterMapper">
+  <resultMap id="BaseResultMap" type="com.ecommerce.mybatis.pojo.ParParameter">
     <id column="par_id" jdbcType="INTEGER" property="parId" />
     <result column="param_cd" jdbcType="VARCHAR" property="paramCd" />
     <result column="param_value" jdbcType="VARCHAR" property="paramValue" />
@@ -13,7 +13,7 @@
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="sts_cd" jdbcType="CHAR" property="stsCd" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ecommerce.pojo.ParParameter">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ecommerce.mybatis.pojo.ParParameter">
     <result column="description" jdbcType="LONGVARCHAR" property="description" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -81,7 +81,7 @@
   <sql id="Blob_Column_List">
     description
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.ecommerce.pojo.ParParameterExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.ecommerce.mybatis.pojo.ParParameterExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -97,7 +97,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.ecommerce.pojo.ParParameterExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ecommerce.mybatis.pojo.ParParameterExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -123,13 +123,13 @@
     delete from par_parameter
     where par_id = #{parId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ecommerce.pojo.ParParameterExample">
+  <delete id="deleteByExample" parameterType="com.ecommerce.mybatis.pojo.ParParameterExample">
     delete from par_parameter
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ecommerce.pojo.ParParameter">
+  <insert id="insert" parameterType="com.ecommerce.mybatis.pojo.ParParameter">
     insert into par_parameter (par_id, param_cd, param_value, 
       created_by, ` creation_date`, last_update_by, 
       last_update_date, call_cnt, remark, 
@@ -139,7 +139,7 @@
       #{lastUpdateDate,jdbcType=TIMESTAMP}, #{callCnt,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
       #{stsCd,jdbcType=CHAR}, #{description,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.ecommerce.pojo.ParParameter">
+  <insert id="insertSelective" parameterType="com.ecommerce.mybatis.pojo.ParParameter">
     insert into par_parameter
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="parId != null">
@@ -212,7 +212,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ecommerce.pojo.ParParameterExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ecommerce.mybatis.pojo.ParParameterExample" resultType="java.lang.Long">
     select count(*) from par_parameter
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -292,7 +292,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.pojo.ParParameter">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ecommerce.mybatis.pojo.ParParameter">
     update par_parameter
     <set>
       <if test="paramCd != null">
@@ -328,7 +328,7 @@
     </set>
     where par_id = #{parId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ecommerce.pojo.ParParameter">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ecommerce.mybatis.pojo.ParParameter">
     update par_parameter
     set param_cd = #{paramCd,jdbcType=VARCHAR},
       param_value = #{paramValue,jdbcType=VARCHAR},
@@ -342,7 +342,7 @@
       description = #{description,jdbcType=LONGVARCHAR}
     where par_id = #{parId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ecommerce.pojo.ParParameter">
+  <update id="updateByPrimaryKey" parameterType="com.ecommerce.mybatis.pojo.ParParameter">
     update par_parameter
     set param_cd = #{paramCd,jdbcType=VARCHAR},
       param_value = #{paramValue,jdbcType=VARCHAR},
