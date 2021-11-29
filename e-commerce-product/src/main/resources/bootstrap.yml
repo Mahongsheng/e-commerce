@@ -4,6 +4,6 @@ spring:
       name: e-commerce-product
       profile: dev
       uri: http://localhost:8888
-      label: main
+      label: master
   profiles:
     active: dev

@@ -310,7 +310,7 @@
     SELECT prc.category_id catId, prc.category_name catName
     FROM wit_wishlist wit, pro_product pro, prc_product_category prc
     WHERE wit.dsr_id = #{dsrId, jdbcType=INTEGER} AND wit.pro_id = pro.pro_id AND pro.prc_id = prc.prc_id AND wit.sts_cd = 1
-    GROUP BY category_id;
+    GROUP BY prc.category_id;
   </select>
 
 </mapper>

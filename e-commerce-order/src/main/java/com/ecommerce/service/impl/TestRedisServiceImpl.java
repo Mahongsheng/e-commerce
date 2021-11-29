@@ -1,6 +1,6 @@
 package com.ecommerce.service.impl;
 
-import com.ecommerce.service.RedisService;
+import com.ecommerce.redis.service.RedisService;
 import com.ecommerce.service.TestRedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

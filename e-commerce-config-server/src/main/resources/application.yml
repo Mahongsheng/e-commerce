@@ -6,7 +6,7 @@ eureka:
     serviceUrl:
       register-with-eureka: true
       fetch-registry: true
-      defaultZone: http://8.130.29.183:8761/eureka
+      defaultZone: http://106.13.127.90:8761/eureka
   instance:
     preferIpAddress: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
@@ -21,5 +21,5 @@ spring:
           uri: https://gitee.com/ma_hongsheng/e-commerce-config.git #配置文件所在仓库
           default-label: master #配置文件分支
           search-paths: config #配置文件所在根目录
-          username: xxx
-          password: xxx
+          username: mahhss@foxmail.com
+          password: Mhs@0112
