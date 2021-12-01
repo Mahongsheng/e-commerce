@@ -1,9 +1,7 @@
 package com.ecommerce.mybatis.pojo;
 
-import com.ecommerce.common.validationGroup.SelectGroup;
 import io.swagger.annotations.ApiModelProperty;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
