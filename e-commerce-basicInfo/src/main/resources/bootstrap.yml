@@ -3,7 +3,7 @@ spring:
     config:
       name: e-commerce-basicInfo
       profile: dev
-      uri: http://localhost:8888
+      uri: http://host.docker.internal:8888 # docker本地部署时应改为 http://host.docker.internal:8888
       label: master
   profiles:
     active: dev
