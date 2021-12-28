@@ -18,8 +18,8 @@ spring:
     config:
       server:
         git:
-          uri: https://gitee.com/ma_hongsheng/e-commerce-config.git #配置文件所在仓库
-          default-label: master #配置文件分支
-          search-paths: config #配置文件所在根目录
-          username: mahhss@foxmail.com
-          password: Mhs@0112
+          uri: xxx # 你的配置文件所在仓库
+          default-label: master # 配置文件分支
+          search-paths: config # 配置文件所在根目录
+          username: xxx # 用户名
+          password: xxx # 密码
