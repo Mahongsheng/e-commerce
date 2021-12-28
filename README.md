@@ -1,16 +1,22 @@
 <center><image src="document/orange-brand-big.png"></image></center>
 
-<center><image src="https://img.shields.io/badge/后端项目-e--commerce--back-brightgreen.svg"></image><image src="https://img.shields.io/badge/前端项目-e--commerce--front-orange.svg"></image><image src="https://img.shields.io/badge/东北大学-实训大作业-red.svg"></image></center>
+<center><image src="https://img.shields.io/badge/后端项目-e--commerce--back-brightgreen.svg"></image><image src="https://img.shields.io/badge/前端项目-e--commerce--front-orange.svg"></image></center>
 
 ## 项目介绍
-
-最近将会对项目进行进一步更新迭代~respect
 
 `e-commerce`为2020年东北大学软件学院英语国际专业于东软睿道进行的实训项目：跨境电商品平台，简称ECO。
 
 ECO跨境电商平台系统，包含基本的注册登录业务，此外本系统将用户分为两类：借卖方用户、品牌商用户。对于品牌方用户，系统支持信息管理、商品管理、订单管理、钱包等业务；对于借卖方用户，系统支持信息管理、商品浏览、心愿单、订单管理、钱包等业务。此外，为了管理用户，还需要管理员，对于管理员，系统支持管理员对用户的权限管理、对菜单的管理、对参数字典的管理、对交易的审核等业务。
 
-本项目由5位大三同学历时2周半进行开发。我们仍才疏学浅，虚心听候大家的批评指正，同时也希望该项目能够帮助到他人。
+我们才疏学浅，虚心听候大家的批评指正，同时也希望该项目能够帮助到他人。
+
+## 启动方式
+
+[请移步我的博客~](https://mhsfire.cn/pages/df05a7/)
+
+## 想要报告以及答辩PPT？
+
+请发送邮件~mahhss@foxmail.com
 
 ## 系统架构图
 
@@ -50,13 +56,14 @@ e-commerce
 ├── e-commerce-order -- 订单微服务模块
 ├── e-commerce-product -- 商品微服务模块
 ├── e-commerce-common -- 工具类及通用代码模块
+├── e-commerce-config-server -- 配置中心
 ├── e-commerce-mybatis -- mybatis generator生成的DAO层代码
 ├── e-commerce-redis -- redis缓存工具类
 ├── e-commerce-security -- spring security模块
 └── e-commerce-zuul -- 网关模块
 ```
 
-后端项目使用微服务架构，并且将不同模块间相互依赖。
+后端项目使用微服务架构，并且不同模块间相互依赖。
 
 后端项目中并不包含注册中心部分代码，注册中心在项目开发之初便打包为Docker镜像部署在服务器上。（Eureka）数据库文件与注册中心单独放于后端其他文件夹中。
 
@@ -114,32 +121,6 @@ e-commerce
 | Lombok           | 简化对象封装工具    | https://github.com/rzwitserloot/lombok         |
 | Jenkins          | 自动化部署工具      | https://github.com/jenkinsci/jenkins           |
 | Hutool           | Java工具类库        | https://www.hutool.cn                          |
-
-## 启动方式
-
-#### 前端启动
-
-```bash
-# Install dependencies
-npm install
-
-# Serve with hot reload at localhost:9528
-npm run dev
-
-# Build for production with minification
-npm run build
-```
-
-#### 后端启动
-
-在开始前，请确定您的Eureka注册中心与数据库都完备，且项目配置中的地址、端口与密码都无误。
-您首先需要启动Admin微服务模块，这样才能够获得验证码、验证权限并进入整个系统中。
-
-用户名和密码：
-
-- admin string
-- bvo string
-- mvo string
 
 ## 特别感谢
 

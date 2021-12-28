@@ -1,0 +1,69 @@
+server:
+  port: 9040
+spring:
+  application:
+    name: e-commerce-product
+  datasource:
+    url: # 你的数据库地址
+    username: # 你的数据库用户名
+    password: # 你的数据库密码
+    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    host: r-2zec1x8fklnvti26iqpd.redis.rds.aliyuncs.com # Redis服务器地址
+    database: 0 # Redis数据库索引（默认为0）
+    port: 6379 # Redis服务器连接端口
+    password: My_redis # Redis服务器连接密码（默认为空）
+    jedis:
+      pool:
+        max-active: 8 # 连接池最大连接数（使用负值表示没有限制）
+        max-wait: -1ms # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-idle: 8 # 连接池中的最大空闲连接
+        min-idle: 0 # 连接池中的最小空闲连接
+    timeout: 3000ms # 连接超时时间（毫秒）
+eureka:
+  client:
+    service-url:
+      defaultZone: http://106.13.127.90:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+# OSS相关配置信息
+aliyun:
+  oss:
+    endpoint: oss-cn-beijing.aliyuncs.com # oss对外服务的访问域名
+    accessKeyId: xxx # 访问身份验证中用到用户标识
+    accessKeySecret: xxx # 用户用于加密签名字符串和oss用来验证签名字符串的密钥
+    bucketName: e-commerce-oss # oss的存储空间
+    policy:
+      expire: 300 # 签名有效期(S)
+    maxSize: 5 # 上传文件大小(M)
+    callback: http://cpud72t9.xiaomy.net/aliyun/oss/callback # 文件上传成功后的回调地址
+    dir:
+      prefix: images/ # 上传文件夹路径前缀
+
+secure:
+  ignored:
+    urls: #安全路径白名单
+      - /swagger-ui.html
+      - /swagger-resources/**
+      - /swagger/**
+      - /**/v2/api-docs
+      - /**/*.js
+      - /**/*.css
+      - /**/*.png
+      - /**/*.ico
+      - /webjars/springfox-swagger-ui/**
+      - /druid/**
+      - /actuator/**
+      - /sso/**
+      - /home/**
+      - /aliyun/oss/callback
+      - /upload/uploadImage
+
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  secret: e-commerce-admin #JWT加解密使用的密钥
+  expiration: 604800 #JWT的超期限时间(60*60*24)
+  tokenHead: Bearer #JWT负载中拿到开头

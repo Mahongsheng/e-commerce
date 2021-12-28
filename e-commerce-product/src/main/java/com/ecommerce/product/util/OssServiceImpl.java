@@ -79,7 +79,7 @@ public class OssServiceImpl implements OssService {
 
             System.out.println(jasonCallback);
             // 提交节点
-            String action = "http://" + ALIYUN_OSS_BUCKET_NAME + "." + ALIYUN_OSS_ENDPOINT;
+            String action = "https://" + ALIYUN_OSS_BUCKET_NAME + "." + ALIYUN_OSS_ENDPOINT;
 
             // 文件大小
             long maxSize = ALIYUN_OSS_MAX_SIZE * 1024 * 1024;
