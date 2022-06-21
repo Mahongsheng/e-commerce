@@ -37,7 +37,7 @@
         <mybatis-generator.version>1.4.0</mybatis-generator.version>
         <mybatis.version>3.5.6</mybatis.version>
         <mybatis-springboot.version>2.1.0</mybatis-springboot.version>
-        <mysql-connector.version>8.0.20</mysql-connector.version>
+        <mysql-connector.version>8.0.28</mysql-connector.version>
         <spring-data-commons.version>2.3.0.RELEASE</spring-data-commons.version>
         <jjwt.version>0.9.1</jjwt.version>
         <aliyun-oss.version>3.10.0</aliyun-oss.version>
